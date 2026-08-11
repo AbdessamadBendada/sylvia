@@ -1951,7 +1951,10 @@
         rise: document.querySelectorAll(
           ".section-label, .services-head p, .about-intro, .about-body, .content-note, .resource-copy > p, .closing-row p",
         ),
-        image: document.querySelectorAll(".hero-portrait, .about-image"),
+        // The hero already has its own reveal through .hero-stage.is-visible.
+        // Applying the second clip-path animation here could leave it fully
+        // clipped in some browsers even though the image loaded correctly.
+        image: document.querySelectorAll(".about-image"),
         line: document.querySelectorAll(".service, .closing-row"),
         stagger: document.querySelectorAll(
           ".process-grid, .quote-list, .logos-inner, .footer-grid, .resource-form",
