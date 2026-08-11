@@ -1942,7 +1942,8 @@
          OPTIONAL EDITORIAL MOTION SYSTEM
          Remove this block and its matching CSS block to disable it.
          ================================================================ */
-      document.body.classList.add("motion-ready");
+      // Keep the optional motion layer disabled. The page already has its own
+      // reveal observer above; enabling both systems can leave content hidden.
 
       const motionGroups = {
         heading: document.querySelectorAll(
