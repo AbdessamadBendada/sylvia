@@ -7,7 +7,7 @@
       name="description"
       content="An editorial design experiment for Digit Finance."
     />
-    <title>Digit Finance — Editorial Client Revision</title>
+    <title>Digit Finance — Blue Resource Section Variant</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -1221,6 +1221,39 @@
 
       .resource h2 {
         font-size: clamp(2.8rem, 5.7vw, 6.4rem);
+      }
+
+      /* Blue resource-section variant for client comparison. */
+      .resource {
+        background: radial-gradient(circle at 72% 18%, #11119a 0%, #0b0568 28%, #07004d 68%);
+        color: var(--white);
+      }
+
+      .resource-copy > p {
+        color: rgba(250, 250, 250, 0.76);
+      }
+
+      .resource-form {
+        border-top-color: rgba(250, 250, 250, 0.4);
+      }
+
+      .resource-form input {
+        border-bottom-color: rgba(250, 250, 250, 0.5);
+        color: var(--white);
+      }
+
+      .resource-form input::placeholder {
+        color: rgba(250, 250, 250, 0.58);
+      }
+
+      .resource-form button {
+        background: var(--orange);
+        color: var(--navy);
+      }
+
+      .resource-form button:hover {
+        background: var(--white);
+        color: var(--navy);
       }
 
       .quote-list {
