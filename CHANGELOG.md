@@ -1,5 +1,13 @@
 # Project Change Log
 
+## 2026-08-14
+
+### Service pricing removal
+
+- Removed all three displayed service prices from `editorial-comment.html` while preserving the services and their descriptions.
+- Removed the now-unused service-price styling; retained the `€250M+` capital-raised metric because it describes client outcomes rather than a service price.
+- Verification: confirmed no service-price markup or pricing amounts remain; reviewed the surrounding desktop and mobile CSS rules for layout regressions. Browser-based visual QA was unavailable in this session.
+
 ## 2026-08-12
 
 ### Editorial mockup typography
