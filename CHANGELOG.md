@@ -5,6 +5,7 @@
 ### Service pricing removal
 
 - Removed all three displayed service prices from `editorial-comment.html` while preserving the services and their descriptions.
+- Applied the same pricing removal to `editorial-comment-blue-resource.html` so both editorial variants remain synchronized.
 - Removed the now-unused service-price styling; retained the `€250M+` capital-raised metric because it describes client outcomes rather than a service price.
 - Verification: confirmed no service-price markup or pricing amounts remain; reviewed the surrounding desktop and mobile CSS rules for layout regressions. Browser-based visual QA was unavailable in this session.
 
