@@ -1,5 +1,23 @@
 # Project Change Log
 
+## 2026-08-31
+
+### Active page naming
+
+- Renamed the earlier `index.html` design to `old-design.html`.
+- Promoted the blue-resource editorial variant from `editorial-comment-blue-resource.html` to the main `index.html` entry point.
+- Renamed the standard editorial variant from `editorial-comment.html` to the root-level `index-2.html`.
+- Updated `AGENTS.md` to document the new active-page roles and distinguish the root-level `index-2.html` from the archived `playground/index-2.html`.
+- Verification: confirmed all three renamed pages exist, are non-empty, and resolve every referenced asset. Visual browser review remains unavailable because no in-app browser is connected in this session.
+
+### Asset and prototype organization
+
+- Moved all root-level image assets into `assets/` and updated local image references in `index.html`, `editorial-comment.html`, and `editorial-comment-blue-resource.html`.
+- Moved `index-2.html`, `editorial-codex.html`, and `editorial-playground.html` into `playground/` without changing their contents.
+- Preserved `editorial-comment-pre-animations.html` unchanged as the clean historical backup; its original root-relative image references are intentionally not maintained.
+- Updated `AGENTS.md` with the active-page, asset-directory, and archived-prototype conventions.
+- Verification: confirmed the archived HTML files are byte-identical to their pre-move Git versions, all local asset references in the three active pages resolve, and `git diff --check` passes. Desktop/mobile browser review was unavailable because no in-app browser was connected in this session.
+
 ## 2026-08-14
 
 ### Service pricing removal
