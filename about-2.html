@@ -1891,34 +1891,328 @@
         .nav-collapse { padding-top: 96px; }
         .nav-collapse .nav-links { font-size: 1.3rem; }
       }
-      .resource-cta {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        min-height: 54px;
-        margin-top: 30px;
-        border-radius: 999px;
+      /* About page composition. Typography-led: the page carries its weight with
+         type, rules and full-bleed panels rather than photography. Scoped to
+         .about-static so the homepage cascade is never affected. */
+
+      /* Hero: the client headline is a three-line sentence where the homepage
+         headline is four words, so it needs its own scale. */
+      /* Client direction: the About page uses a quieter display scale than the
+         homepage — roughly 25% down across the headings. Every rule below is
+         scoped to .about-static so index.html keeps its original scale. */
+      .about-static .hero-title {
+        white-space: normal;
+        max-width: 26ch;
+        font-size: clamp(2rem, 4.8vw, 5rem);
+        letter-spacing: -0.05em;
+        line-height: 0.98;
+      }
+      .about-static .hero-title .line:nth-child(2),
+      .about-static .hero-title .line:nth-child(3) { text-align: left; }
+      .about-static .hero-title .line { padding: 0.02em 0 0.06em; }
+
+      .about-static .hero-panel-copy { margin: auto 0; }
+      .about-static .hero-panel-copy p {
+        max-width: 38ch;
+        margin: 0;
+        color: rgba(250, 250, 250, 0.76);
+        font-size: clamp(1rem, 1.35vw, 1.32rem);
+        line-height: 1.6;
+      }
+      .about-static .hero-panel-copy p + p {
+        margin-top: 26px;
+        color: rgba(250, 250, 250, 0.62);
+        font-size: clamp(0.88rem, 1.1vw, 1.06rem);
+      }
+      .about-static .hero-panel-copy strong {
+        color: var(--white);
+        font-weight: 400;
+      }
+
+      /* Metrics band. Standalone on this page — the numerals are the visual
+         event, so they sit on their own with generous air. */
+      .about-static .metrics-band { padding: clamp(84px, 10vw, 150px) 0; }
+      .about-static .about-2-metrics {
+        margin-top: 0;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      /* Philosophy: full-bleed navy panel. One voice, so no list index and no
+         testimonial byline scaffolding. */
+      .about-static .philosophy {
+        padding: clamp(96px, 12vw, 180px) 0;
         background: var(--navy);
         color: var(--white);
-        font-size: 0.7rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        transition: 0.25s ease;
       }
-      .resource-cta:hover { background: var(--white); color: var(--navy); }
+      .about-static .philosophy .section-label { color: rgba(250, 250, 250, 0.55); }
+      .about-static .philosophy-quote {
+        max-width: 40ch;
+        margin: 0;
+        font-family: "Stack Sans Headline", sans-serif;
+        font-size: clamp(1.45rem, 2.7vw, 3.1rem);
+        font-weight: 500;
+        letter-spacing: -0.038em;
+        line-height: 1.12;
+      }
+      .about-static .philosophy-quote em {
+        color: var(--orange);
+        font-style: normal;
+      }
+      .about-static .philosophy-credit {
+        margin-top: clamp(46px, 6vw, 76px);
+        padding-top: 24px;
+        border-top: 1px solid rgba(250, 250, 250, 0.4);
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 24px;
+      }
+      .about-static .philosophy-credit strong {
+        font-size: 0.86rem;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+      }
+      .about-static .philosophy-credit span {
+        color: rgba(250, 250, 250, 0.6);
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      /* Statement: the signature word cascade, with a supporting second line. */
+      .about-static .statement {
+        min-height: 0;
+        padding: clamp(100px, 12vw, 190px) 0;
+        border-top: 1px solid var(--line);
+      }
+      .about-static .statement > .shell {
+        position: static;
+        min-height: 0;
+        display: block;
+        padding-block: 0;
+      }
+      .about-static .statement-copy {
+        width: min(88%, 1180px);
+        font-size: clamp(2rem, 4.4vw, 5.2rem);
+        letter-spacing: -0.042em;
+        line-height: 1.06;
+      }
+      .about-static .statement-follow {
+        max-width: 36ch;
+        margin: clamp(34px, 4.5vw, 56px) 0 0;
+        padding-left: 18px;
+        border-left: 3px solid var(--orange);
+        font-family: "Stack Sans Headline", sans-serif;
+        font-size: clamp(1.05rem, 1.55vw, 1.75rem);
+        font-weight: 500;
+        letter-spacing: -0.018em;
+        line-height: 1.24;
+      }
+
+      /* Fractional pull quote. Deliberately a different treatment from the navy
+         philosophy panel so the two quotes never read as the same component. */
+      .about-static .fractional {
+        padding: clamp(90px, 11vw, 165px) 0;
+        border-top: 1px solid var(--line);
+      }
+      .about-static .fractional-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr);
+        gap: clamp(40px, 6vw, 100px);
+        align-items: start;
+      }
+      .about-static .fractional-aside .section-label { margin-bottom: clamp(30px, 4vw, 48px); }
+      .about-static .fractional-quote {
+        max-width: 34ch;
+        margin: 0;
+        font-family: "Stack Sans Headline", sans-serif;
+        font-size: clamp(1.35rem, 2.25vw, 2.5rem);
+        font-weight: 500;
+        letter-spacing: -0.03em;
+        line-height: 1.16;
+      }
+      .about-static .fractional-note {
+        max-width: 38ch;
+        margin: 0;
+        padding-top: 26px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.75;
+      }
+
+      /* Mission and Vision: a true two-column panel pair. */
+      .about-static .mission-vision { padding: clamp(90px, 11vw, 165px) 0; }
+      .about-static .mission-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .about-static .mission-panel {
+        display: flex;
+        flex-direction: column;
+        min-height: clamp(280px, 25vw, 360px);
+        padding: clamp(30px, 4vw, 58px) clamp(26px, 3vw, 46px);
+      }
+      .about-static .mission-panel + .mission-panel { border-left: 1px solid var(--line); }
+      .about-static .mission-panel small {
+        color: var(--orange);
+        font-size: 0.67rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .about-static .mission-panel h3 {
+        margin: 24px 0 auto;
+        font-family: "Stack Sans Headline", sans-serif;
+        font-size: clamp(1.8rem, 3vw, 3.2rem);
+        font-weight: 500;
+        letter-spacing: -0.04em;
+        line-height: 0.94;
+        text-transform: uppercase;
+      }
+      .about-static .mission-panel p {
+        max-width: 44ch;
+        margin: clamp(30px, 4vw, 46px) 0 0;
+        color: var(--muted);
+        font-size: 0.86rem;
+        line-height: 1.7;
+      }
+
+      /* Values reuse the service rows. These are statements, not links, so the
+         arrow is removed and the row grid closes up rather than leaving a lane. */
+      .about-static .values .service {
+        grid-template-columns: 70px minmax(0, 1.15fr) minmax(240px, 0.85fr);
+        cursor: default;
+      }
+      .about-static .values .service-info {
+        max-width: 42ch;
+        padding-right: 0;
+      }
+      /* Values and the closing CTA are both dark and adjacent on this page, so the
+         usual section padding would leave a large dead band between them. Tighten
+         the seam so the two read as one deliberate dark finale. */
+      .about-static .values { padding-bottom: clamp(40px, 5vw, 76px); }
+      .about-static .closing { padding-top: clamp(76px, 8.5vw, 130px); }
+      /* The About closing headline is longer than the homepage's four words. */
+      .about-static .closing h2 {
+        max-width: 17ch;
+        font-size: clamp(2.6rem, 6.3vw, 7rem);
+        line-height: 0.9;
+      }
+
+      /* Remaining headings inherit homepage scales, so they are stepped down here
+         to match the About page's quieter display scale. */
+      .about-static .about-title {
+        font-size: clamp(2.6rem, 6.1vw, 7rem);
+        letter-spacing: -0.05em;
+        line-height: 0.88;
+      }
+      .about-static .about-intro {
+        max-width: 30ch;
+        font-size: clamp(1.2rem, 1.7vw, 1.95rem);
+        line-height: 1.18;
+      }
+      .about-static .services-head h2 {
+        max-width: 10ch;
+        font-size: clamp(2.5rem, 6vw, 6.7rem);
+        letter-spacing: -0.05em;
+        line-height: 0.9;
+      }
+      .about-static .values .service h3 {
+        font-size: clamp(1.7rem, 3.9vw, 4.8rem);
+        letter-spacing: -0.045em;
+        line-height: 0.94;
+      }
+
+      /* Section rhythm follows the type down. The homepage padding is tuned for its
+         larger display scale and leaves dead space around the quieter About type. */
+      .about-static .section-label { margin-bottom: clamp(26px, 2.6vw, 36px); }
+      .about-static .about,
+      .about-static .statement { padding: clamp(72px, 8.5vw, 140px) 0; }
+      .about-static .philosophy { padding: clamp(72px, 8.5vw, 136px) 0; }
+      .about-static .metrics-band { padding: clamp(62px, 7.4vw, 116px) 0; }
+      .about-static .fractional,
+      .about-static .mission-vision { padding: clamp(66px, 8vw, 126px) 0; }
+      .about-static .values { padding-top: clamp(70px, 8.4vw, 132px); }
+      .about-static .services-head { margin-bottom: clamp(38px, 4.4vw, 52px); }
+      .about-static .values .service { min-height: clamp(96px, 10.5vw, 148px); }
+      .about-static .metric { min-height: 158px; }
+
+      @media (max-width: 980px) {
+        .about-static .fractional-grid { grid-template-columns: 1fr; gap: 34px; }
+      }
+
+      @media (max-width: 850px) {
+        .about-static .about-2-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .about-static .metric:nth-child(3) { border-left: 0; }
+        .about-static .mission-grid { grid-template-columns: 1fr; }
+        .about-static .mission-panel + .mission-panel {
+          border-left: 0;
+          border-top: 1px solid var(--line);
+        }
+        .about-static .mission-panel { min-height: 0; }
+        .about-static .values .service { grid-template-columns: 56px 1fr; }
+        .about-static .values .service-info { grid-column: 2; margin-top: 14px; }
+      }
+
+      @media (max-width: 640px) {
+        /* Sized so each authored headline line fits the 390px viewport without
+           dropping a single word onto its own line. */
+        .about-static .hero-title {
+          font-size: clamp(1.55rem, 6.5vw, 2.35rem);
+          line-height: 1.06;
+        }
+        .about-static .about-title,
+        .about-static .services-head h2,
+        .about-static .closing h2 { line-height: 0.96; }
+
+        /* The founder bio fills the panel at this width, so space-between has no
+           slack left to distribute and the label/footer collide with the copy. */
+        .about-static .hero-panel {
+          min-height: 0;
+          gap: 20px;
+          padding: 26px 22px 24px;
+        }
+        .about-static .hero-panel-copy { margin: 0; }
+        .about-static .hero-panel-copy p {
+          font-size: 0.95rem;
+          line-height: 1.62;
+        }
+        .about-static .hero-panel-copy p + p {
+          margin-top: 16px;
+          font-size: 0.86rem;
+        }
+        .about-static .about-2-metrics { grid-template-columns: 1fr; }
+        .about-static .metric:nth-child(3) { border-left: 0; }
+        .about-static .metrics-band { padding-block: 68px; }
+        /* Stacked one-up, the desktop min-height strands each label far below its
+           numeral. Let the pair sit together instead. */
+        .about-static .metric {
+          min-height: 0;
+          gap: 12px;
+          padding-block: 22px;
+        }
+        .about-static .philosophy-credit {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+        .about-static .mission-panel { padding-inline: 0; }
+        .about-static .values .service { grid-template-columns: 40px 1fr; }
+      }
     </style>
   </head>
-  <body>
+  <body class="about-static">
     <header class="nav">
       <div class="shell nav-inner">
-        <a class="brand" href="#top" aria-label="Digit Finance home"><img src="assets/logo.png" alt="Digit Finance" decoding="async" /></a>
+        <a class="brand" href="index.html" aria-label="Digit Finance home"><img src="assets/logo.png" alt="Digit Finance" decoding="async" /></a>
         <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Open menu"><span></span><span></span></button>
         <div class="nav-collapse" id="primary-nav">
           <nav class="nav-links" aria-label="Primary navigation">
-            <a href="#approach">Approach</a>
+            <a href="index.html#approach">Approach</a>
             <a href="work-with-us.html">Services</a>
-            <a href="about-2.html">About</a>
+            <a href="about-2.html" aria-current="page">About</a>
             <a href="free-template.html">Free</a>
             <a href="contact.html">Contact</a>
           </nav>
@@ -1958,371 +2252,314 @@
     <main id="top">
       <section class="hero shell">
         <div class="hero-meta">
-          <span>Financial advisory and fractional CFO support</span>
+          <span>About page</span>
           <p>
-            AI-powered speed and board-level judgment for founders raising Seed to Series B.
+            Strategic finance for ambitious founders, from the first model to
+            the room where the round gets decided.
           </p>
         </div>
         <h1 class="hero-title">
-          <span class="line"><span class="word">Numbers that get you <em>funded</em></span></span>
+          <span class="line"><span class="word">Leadership isn’t about</span></span>
+          <span class="line"><span class="word">controlling the <em>numbers</em>,</span></span>
+          <span class="line"><span class="word">it’s about connecting them</span></span>
+          <span class="line"><span class="word">to people, strategy, and purpose.</span></span>
         </h1>
 
         <div class="hero-stage" data-observe>
           <div class="hero-portrait">
             <img
-              src="assets/sylvia-website.webp"
+              src="assets/sylvia.webp"
               alt="Sylvia Cebanu, founder of Digit Finance"
+              decoding="async"
             />
           </div>
           <div class="hero-panel">
-            <span class="hero-panel-index">01 / The Founder Problem</span>
-            <blockquote data-word-reveal>
-              Startup founders are brilliant at building their product, but
-              when the numbers don't hold up, the cash flow, the model, the
-              story investors need to hear, the best ideas in the world
-              <span>don't get funded.</span>
-            </blockquote>
+            <span class="hero-panel-index">About the founder</span>
+            <div class="hero-panel-copy">
+              <p>
+                <strong>Sylvia Cebanu</strong> is a Strategic Finance Partner to
+                startups and Fractional CFO with 14 years of experience in
+                corporate finance and 7 years operating at C-level across the
+                US, UK, and EU.
+              </p>
+              <p>
+                Having built financial foundations for more than 100 startups
+                from pre-seed to scale-up, Sylvia’s work spans some of the most
+                complex, fast-moving sectors in the startup world: fintech,
+                SaaS, AI, robotics, edtech, biotech, and media.
+              </p>
+            </div>
             <div class="hero-panel-footer">
               <span>Fractional CFO</span>
-              <span>US · UK · EU</span> 
+              <span>US · UK · EU</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="statement" id="approach">
+      <section class="metrics-band">
         <div class="shell">
-          <div class="section-label">The Partnership</div>
-          <p class="statement-copy" data-scroll-reveal>
-            We pair AI-powered speed with board-level judgment to turn fast-moving startups into investor-ready businesses
-          </p>
-
-          <div class="metrics" data-reveal>
-            <div class="metric">
-              <strong data-count="250" data-prefix="€" data-suffix="M+">€250M+</strong>
-              <span>Capital raised by supported founders</span>
-            </div>
+          <div class="metrics about-2-metrics" data-reveal>
             <div class="metric">
               <strong data-count="100" data-suffix="+">100+</strong>
-              <span>Startups supported from pre-seed to scale-up</span>
+              <span>Startups built from pre-seed to scale-up</span>
             </div>
             <div class="metric">
-              <strong data-count="14" data-suffix=" yrs">14 yrs</strong>
-              <span>Senior corporate finance experience</span>
+              <strong data-count="250" data-prefix="€" data-suffix="M+">€250M+</strong>
+              <span>Capital raised for founders</span>
+            </div>
+            <div class="metric">
+              <strong data-count="14">14</strong>
+              <span>Years in corporate finance</span>
+            </div>
+            <div class="metric">
+              <strong data-count="7">7</strong>
+              <span>Years operating at C-level</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="services" id="services">
+      <section class="philosophy">
         <div class="shell">
-          <div class="services-head" data-reveal>
-            <h2>How we work</h2>
-            <p>
-              From a critical one-off model to an ongoing seat at the table,
-              the engagement adapts to the stage and decisions ahead.
-            </p>
+          <div class="section-label">Sylvia’s philosophy</div>
+          <blockquote class="philosophy-quote" data-reveal>
+            “I believe that behind every fundable business is a coherent
+            financial story, one where the numbers don’t just add up,
+            <em>but speak.</em> My work is about linking financial data to the
+            broader objectives of the business, so that when a founder walks
+            into a room with investors, the story the numbers tell is one worth
+            backing.”
+          </blockquote>
+          <div class="philosophy-credit" data-reveal>
+            <strong>Sylvia Cebanu</strong>
+            <span>Founder, Digit Finance</span>
           </div>
-          <div class="service-list">
-            <a class="service" href="work-with-us.html#strategy-hour" data-reveal>
-              <span class="service-index">01.</span>
-              <h3>Strategy hour</h3>
-              <p class="service-info">
-                Bring the messiest model, deck or board question and leave with
-                a clear action plan.
-              </p>
-              <span class="service-arrow">↗</span>
-            </a>
-            <a class="service" href="work-with-us.html#financial-model" data-reveal>
-              <span class="service-index">02.</span>
-              <h3>Financial model</h3>
-              <p class="service-info">
-                A bespoke bottom-up model built around your business, numbers
-                and fundraising story. Delivered in 2 to 4 weeks.
-              </p>
-              <span class="service-arrow">↗</span>
-            </a>
-            <a class="service" href="work-with-us.html#fractional-cfo" data-reveal>
-              <span class="service-index">03.</span>
-              <h3>Fractional CFO</h3>
-              <p class="service-info">
-                Ongoing forecasting, cash flow, board reporting and senior
-                financial leadership when it matters.
-              </p>
-              <span class="service-arrow">↗</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section class="process" id="process">
-        <div class="shell">
-          <div class="section-label">How it works</div>
-          <h2 class="editorial-heading" data-reveal>
-            What working together looks like
-          </h2>
-          <div class="process-grid" data-reveal>
-            <article class="process-step">
-              <small>01 / Start</small>
-              <h3>Discovery call</h3>
-              <p>
-                A free call to understand the business, its stage and where the
-                numbers need to go.
-              </p>
-            </article>
-            <article class="process-step">
-              <small>02 / Understand</small>
-              <h3>Deep dive</h3>
-              <p>
-                A working session to map the model, drivers and assumptions so
-                everything reflects reality.
-              </p>
-            </article>
-            <article class="process-step">
-              <small>03 / Build</small>
-              <h3>Build &amp; review</h3>
-              <p>
-                Sylvia builds, then walks you through every number and the
-                thinking behind it.
-              </p>
-            </article>
-            <article class="process-step">
-              <small>04 / Partner</small>
-              <h3>In your corner</h3>
-              <p>
-                Ongoing support through board meetings, investor calls and the
-                decisions between.
-              </p>
-            </article>
-          </div>
-          <p class="content-note">
-            Placeholder process, to be confirmed with Sylvia.
-          </p>
         </div>
       </section>
 
       <section class="about" id="about">
         <div class="shell about-grid">
           <div class="about-image" data-reveal>
-            <img src="assets/sylvia.webp" alt="Sylvia Cebanu" loading="lazy" />
+            <img
+              src="assets/sylvia-website.webp"
+              alt="Sylvia Cebanu working with a founder"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
           <div class="about-copy" data-reveal>
-            <div class="section-label">About the founder</div>
-            <h2 class="about-title">Hi, I’m <span>Sylvia.</span></h2>
+            <div class="section-label">The work behind the numbers</div>
+            <h2 class="about-title">A broader <span>perspective.</span></h2>
             <p class="about-intro">
-              The person founders call when the numbers stop matching the
-              story.
+              What makes Sylvia rare is the combination she brings.
             </p>
             <p class="about-body">
-              
-              Sylvia Cebanu is a fractional CFO and financial advisor to startups with 14 years of experience in corporate finance across the US, UK, and EU. Having built financial foundations for more than 100 startups from pre-seed to scale-up, Sylvia's work spans some of the most complex, fast-moving sectors in the startup world: fintech, SaaS, AI, robotics, edtech, biotech, and media, where she builds the financial foundations founders need to make stronger decisions, raise capital and grow with confidence.
-
+              She builds the models herself, sits at board level, and speaks
+              both founder and investor fluently. She knows what each side needs
+              to hear, and she knows how to bridge the gap between a great
+              product and a fundable business.
             </p>
-            <p class="about-pull">
-              You should feel proud of the business you're building, not just
-              relieved it survived another quarter.
-            </p>
-            <a class="about-link" href="about-2.html">Learn more about Sylvia <span>↗</span></a>
-          </div>
-        </div>
-      </section>
-
-      <section class="logos" aria-label="Selected clients">
-        <div class="shell logos-inner" data-reveal>
-          <p>Trusted by ambitious founders across</p>
-          <img src="assets/Logo-Fractional.png" alt="Fractional Group" loading="lazy" />
-          <img src="assets/upcelerator_logo.png" alt="Upcelerator" loading="lazy" />
-          <img src="assets/payall-logo.png" alt="Payall" loading="lazy" />
-        </div>
-      </section>
-
-      <section class="resource" id="free">
-        <div class="shell resource-grid">
-          <div class="resource-copy" data-reveal>
-            <div class="section-label">Free for early-stage founders</div>
-            <h2>Before the business, build the numbers.</h2>
-            <p>
-              A plug-and-play Excel template for revenue, costs, cash flow and
-              growth assumptions—plus a walkthrough of what investors actually
-              look for.
+            <p class="about-body">
+              Today, through Digit Finance, Sylvia works as a strategic finance
+              partner to ambitious founders at the most critical stages of their
+              growth — from building their first investor-ready financial model,
+              to preparing for Series A scrutiny, to walking into a VC meeting
+              with numbers they can confidently defend.
             </p>
           </div>
-          <a class="resource-cta" href="free-template.html" data-reveal>Download the free template ↗</a>
         </div>
       </section>
 
-      <section class="testimonials">
+      <section class="statement" id="approach">
         <div class="shell">
-          <div class="section-label">Founder perspective</div>
-          <h2 class="editorial-heading" data-reveal>What founders say</h2>
-          <div class="quote-list">
-            <article class="quote-row" data-reveal>
-              <span>01.</span>
-              <blockquote>
-                “Sylvia rebuilt our model from scratch and we walked into our
-                Series A able to defend every number.”
-              </blockquote>
-              <p class="quote-person">
-                <strong>Founder name</strong>
-                CEO, Company
+          <div class="section-label">The belief</div>
+          <p class="statement-copy" data-scroll-reveal>
+            Every number has a story.
+          </p>
+          <p class="statement-follow">
+            Sylvia and her team make sure yours has a happy ending.
+          </p>
+        </div>
+      </section>
+
+      <section class="fractional">
+        <div class="shell fractional-grid">
+          <div class="fractional-aside" data-reveal>
+            <div class="section-label">Fractional by design</div>
+            <p class="fractional-note">
+              That means staying in the room for the board meetings, the
+              investor calls, and the decisions in between — with the range that
+              comes from seeing the same problems solved across very different
+              businesses.
+            </p>
+          </div>
+          <blockquote class="fractional-quote" data-reveal>
+            “I engage as deeply as a full-time executive. The main difference is
+            flexibility: I can work with multiple companies in parallel,
+            bringing a broader perspective from different industries, without
+            compromising quality or commitment to each client.”
+          </blockquote>
+        </div>
+      </section>
+
+      <section class="mission-vision">
+        <div class="shell">
+          <div class="mission-grid">
+            <article class="mission-panel" data-reveal>
+              <small>01 / Why we exist</small>
+              <h3>Mission</h3>
+              <p>
+                At Digit Finance, our mission is to ensure that no great
+                business fails because the numbers weren’t ready. We turn
+                financial complexity into clarity, so founders can lead with
+                certainty, raise with conviction, and build toward the exit
+                they’ve always envisioned.
               </p>
             </article>
-            <article class="quote-row" data-reveal>
-              <span>02.</span>
-              <blockquote>
-                “The clarity she gave us cut weeks off our raise and changed
-                how our board saw the business.”
-              </blockquote>
-              <p class="quote-person">
-                <strong>Founder name</strong>
-                Founder, Company
-              </p>
-            </article>
-            <article class="quote-row" data-reveal>
-              <span>03.</span>
-              <blockquote>
-                “Having Sylvia in the room for investor calls was the
-                difference between hoping and knowing.”
-              </blockquote>
-              <p class="quote-person">
-                <strong>Founder name</strong>
-                Co-founder, Company
+            <article class="mission-panel" data-reveal>
+              <small>02 / Where we’re going</small>
+              <h3>Vision</h3>
+              <p>
+                We envision a future where every ambitious founder has access to
+                the strategic finance expertise they need to build something
+                that lasts. Where more startups reach their funding round with
+                confidence. Where more great ideas don’t just survive, they
+                scale.
               </p>
             </article>
           </div>
-          <p class="content-note">
-            Placeholder testimonials, to be replaced with real quotes, names
-            and outcomes.
-          </p>
+        </div>
+      </section>
+
+      <section class="services values" id="values">
+        <div class="shell">
+          <div class="services-head" data-reveal>
+            <h2>Values we live by</h2>
+            <p>
+              The principles behind every model, every board pack, and every
+              conversation with a founder.
+            </p>
+          </div>
+          <div class="service-list">
+            <div class="service" data-reveal>
+              <span class="service-index">01.</span>
+              <h3>Clarity</h3>
+              <p class="service-info">
+                We cut through complexity so founders always know where they
+                stand.
+              </p>
+            </div>
+            <div class="service" data-reveal>
+              <span class="service-index">02.</span>
+              <h3>Precision</h3>
+              <p class="service-info">
+                Every number has a reason. Every model is built to hold up under
+                scrutiny.
+              </p>
+            </div>
+            <div class="service" data-reveal>
+              <span class="service-index">03.</span>
+              <h3>Partnership</h3>
+              <p class="service-info">
+                We stay in the room. For the board meetings, the investor calls,
+                and the moments that matter most.
+              </p>
+            </div>
+            <div class="service" data-reveal>
+              <span class="service-index">04.</span>
+              <h3>Integrity</h3>
+              <p class="service-info">
+                We tell founders what their numbers actually mean, even when
+                it’s uncomfortable.
+              </p>
+            </div>
+            <div class="service" data-reveal>
+              <span class="service-index">05.</span>
+              <h3>Speed</h3>
+              <p class="service-info">
+                We move at the pace ambitious businesses actually operate.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
       <section class="closing">
         <div class="shell">
-          <h2 data-reveal>Ready to make the numbers <span>work?</span></h2>
+          <h2 data-reveal>
+            Your business deserves a financial story <span>worth telling.</span>
+          </h2>
           <div class="closing-row" data-reveal>
             <p>
               Tell us where the business is going and what is getting in the
               way. We will make the next financial decision clearer.
             </p>
             <a class="closing-button" href="mailto:hello@digitfinance.com">
-              Book a call <span>↗</span>
+              Work with us <span aria-hidden="true">↗</span>
             </a>
           </div>
           <footer class="footer">
             <div class="footer-grid">
-              <div>
-                <a class="footer-brand" href="#top" aria-label="Digit Finance home">
-                  <img src="assets/logo.png" alt="Digit Finance" />
-                </a>
-              </div>
-              <div>
-                <h3>Contact</h3>
-                <div class="footer-links">
-                  <a href="mailto:hello@digitfinance.com">hello@digitfinance.com</a>
-                  <a href="tel:+440000000000">+44 (0) 000 000 0000</a>
-                  <p>London, UK</p>
-                </div>
-              </div>
-              <div>
-                <h3>Legal</h3>
-                <div class="footer-links">
-                  <a href="#">Imprint</a>
-                  <a href="#">Terms &amp; Conditions</a>
-                  <a href="#">Privacy Policy</a>
-                  <a href="#">Cookies</a>
-                </div>
-              </div>
-              <div>
-                <h3>Occasional notes on startup finance</h3>
-                <form class="footer-newsletter" action="#" method="post">
-                  <input
-                    type="email"
-                    name="email"
-                    autocomplete="email"
-                    placeholder="Your email"
-                    aria-label="Newsletter email"
-                    required
-                  />
-                  <button type="submit" aria-label="Subscribe">↗</button>
-                </form>
-              </div>
+              <div><a class="footer-brand" href="index.html" aria-label="Digit Finance home"><img src="assets/logo.png" alt="Digit Finance" decoding="async" /></a></div>
+              <div><h3>Contact</h3><div class="footer-links"><a href="mailto:hello@digitfinance.com">hello@digitfinance.com</a><a href="tel:+440000000000">+44 (0) 000 000 0000</a><p>London, UK</p></div></div>
+              <div><h3>Legal</h3><div class="footer-links"><a href="#">Imprint</a><a href="#">Terms &amp; Conditions</a><a href="#">Privacy Policy</a><a href="#">Cookies</a></div></div>
+              <div><h3>Occasional notes on startup finance</h3><form class="footer-newsletter" action="#" method="post"><input type="email" name="email" autocomplete="email" placeholder="Your email" aria-label="Newsletter email" required /><button type="submit" aria-label="Subscribe">↗</button></form></div>
             </div>
-            <div class="footer-bottom">
-              <span>© <span id="year"></span> Digit Finance</span>
-              <span>Strategic finance for ambitious founders</span>
-            </div>
+            <div class="footer-bottom"><span>© <span id="year"></span> Digit Finance</span><span>Strategic finance for ambitious founders</span></div>
           </footer>
         </div>
       </section>
     </main>
 
     <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
-
+      // Agent polish: keep the page safe if the shared footer is removed later.
+      const yearElement = document.getElementById("year");
+      if (yearElement) yearElement.textContent = new Date().getFullYear();
       const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       document.querySelectorAll("[data-word-reveal]").forEach((element) => {
         const sentence = element.textContent.trim().replace(/\s+/g, " ");
         element.setAttribute("aria-label", sentence);
-        element.innerHTML = sentence
-          .split(" ")
-          .map(
-            (word, index) =>
-              `<span class="reveal-word" aria-hidden="true" style="--delay:${index * 28}ms">${word}&nbsp;</span>`,
-          )
-          .join("");
+        element.innerHTML = sentence.split(" ").map((word, index) => '<span class="reveal-word" aria-hidden="true" style="--delay:' + (index * 28) + 'ms">' + word + '&nbsp;</span>').join("");
       });
 
       const scrollStatement = document.querySelector("[data-scroll-reveal]");
       const scrollSection = scrollStatement.closest(".statement");
+      // On the About page the metrics live in their own band above the statement,
+      // so this is null here. The generic reveal observer counts them on entry.
       const scrollMetrics = scrollSection.querySelector(".metrics");
       const scrollSentence = scrollStatement.textContent.trim().replace(/\s+/g, " ");
-
       scrollStatement.setAttribute("aria-label", scrollSentence);
-      scrollStatement.innerHTML = scrollSentence
-        .split(" ")
-        .map((word) => `<span class="scroll-word" aria-hidden="true">${word}&nbsp;</span>`)
-        .join("");
-
+      scrollStatement.innerHTML = scrollSentence.split(" ").map((word) => '<span class="scroll-word" aria-hidden="true">' + word + '&nbsp;</span>').join("");
       const scrollWords = [...scrollStatement.querySelectorAll(".scroll-word")];
       let scrollTicking = false;
+      const staticAboutStatement = document.body.classList.contains("about-static");
 
+      function setStatementFinalState() {
+        scrollWords.forEach((word) => { word.style.setProperty("--word-opacity", "1"); word.style.setProperty("--word-y", "0em"); word.style.setProperty("--word-scale", "1"); });
+      }
       function updateScrollStatement() {
+        if (staticAboutStatement) return;
         const rect = scrollSection.getBoundingClientRect();
         const range = Math.max(scrollSection.offsetHeight - innerHeight, 1);
         const progress = Math.min(Math.max(-rect.top / range, 0), 1);
         const wordProgress = Math.min(progress / 0.74, 1);
-
         scrollWords.forEach((word, index) => {
-          const wordPosition = scrollWords.length > 1
-            ? index / (scrollWords.length - 1)
-            : 0;
+          const wordPosition = scrollWords.length > 1 ? index / (scrollWords.length - 1) : 0;
           const start = wordPosition * 0.72;
-          const reveal = Math.min(
-            Math.max((wordProgress - start) / 0.28, 0),
-            1,
-          );
+          const reveal = Math.min(Math.max((wordProgress - start) / 0.28, 0), 1);
           word.style.setProperty("--word-opacity", (0.14 + reveal * 0.86).toFixed(3));
-          word.style.setProperty("--word-y", `${(1 - reveal) * 0.15}em`);
+          word.style.setProperty("--word-y", String((1 - reveal) * 0.15) + "em");
           word.style.setProperty("--word-scale", (0.986 + reveal * 0.014).toFixed(3));
         });
-
-        const metricsReveal = Math.min(Math.max((progress - 0.82) / 0.18, 0), 1);
-        scrollMetrics.style.setProperty("--metrics-opacity", metricsReveal.toFixed(3));
-        scrollMetrics.style.setProperty("--metrics-y", `${(1 - metricsReveal) * 18}px`);
-        if (progress >= 0.82) {
-          scrollMetrics.querySelectorAll("[data-count]").forEach(animateCount);
-        }
         scrollTicking = false;
       }
-
       function requestScrollStatement() {
-        if (scrollTicking || reducedMotion) return;
+        if (scrollTicking || reducedMotion || staticAboutStatement) return;
         requestAnimationFrame(updateScrollStatement);
         scrollTicking = true;
       }
-
       function animateCount(element) {
         if (element.dataset.done || reducedMotion) return;
         element.dataset.done = "true";
@@ -2331,114 +2568,86 @@
         const suffix = element.dataset.suffix || "";
         const start = performance.now();
         const duration = 1100;
-
         function frame(now) {
           const progress = Math.min((now - start) / duration, 1);
           const eased = 1 - Math.pow(1 - progress, 3);
-          element.textContent = `${prefix}${Math.round(target * eased)}${suffix}`;
+          element.textContent = prefix + Math.round(target * eased) + suffix;
           if (progress < 1) requestAnimationFrame(frame);
         }
-
         requestAnimationFrame(frame);
+      }
+      // The static About statement keeps a non-sticky layout and cascades its words
+      // in on entry. Metrics are not driven from here — they sit in a band further
+      // up the page and are counted by the reveal observer when they scroll in.
+      function revealStaticStatement() {
+        scrollWords.forEach((word, index) => {
+          setTimeout(() => {
+            word.style.setProperty("--word-opacity", "1");
+            word.style.setProperty("--word-y", "0em");
+            word.style.setProperty("--word-scale", "1");
+          }, index * 74);
+        });
       }
 
       if (reducedMotion) {
-        scrollWords.forEach((word) => {
-          word.style.setProperty("--word-opacity", "1");
-          word.style.setProperty("--word-y", "0em");
-          word.style.setProperty("--word-scale", "1");
-        });
-        scrollMetrics.style.setProperty("--metrics-opacity", "1");
-        scrollMetrics.style.setProperty("--metrics-y", "0px");
+        setStatementFinalState();
         document.body.classList.add("ready");
-        document
-          .querySelectorAll("[data-reveal], [data-word-reveal], [data-observe]")
-          .forEach((element) => element.classList.add("is-visible"));
+        document.querySelectorAll("[data-reveal], [data-word-reveal], [data-observe]").forEach((element) => element.classList.add("is-visible"));
       } else {
-        updateScrollStatement();
-        addEventListener("scroll", requestScrollStatement, { passive: true });
-        addEventListener("resize", requestScrollStatement);
-        requestAnimationFrame(() => document.body.classList.add("ready"));
-
-        const observer = new IntersectionObserver(
-          (entries) => {
+        if (staticAboutStatement) {
+          const staticStatementObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
               if (!entry.isIntersecting) return;
-              entry.target.classList.add("is-visible");
-              entry.target
-                .querySelectorAll("[data-count]")
-                .forEach(animateCount);
-              observer.unobserve(entry.target);
+              revealStaticStatement();
+              staticStatementObserver.unobserve(entry.target);
             });
-          },
-          { threshold: 0.18 },
-        );
-
-        document
-          .querySelectorAll("[data-reveal], [data-word-reveal], [data-observe]")
-          .forEach((element) => {
-            if (element !== scrollMetrics) observer.observe(element);
+          }, { threshold: 0.2 });
+          staticStatementObserver.observe(scrollSection);
+        } else {
+          updateScrollStatement();
+          addEventListener("scroll", requestScrollStatement, { passive: true });
+          addEventListener("resize", requestScrollStatement);
+        }
+        requestAnimationFrame(() => document.body.classList.add("ready"));
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-visible");
+            entry.target.querySelectorAll("[data-count]").forEach(animateCount);
+            observer.unobserve(entry.target);
           });
+        }, { threshold: 0.18 });
+        document.querySelectorAll("[data-reveal], [data-word-reveal], [data-observe]").forEach((element) => observer.observe(element));
       }
 
-      /* ================================================================
-         OPTIONAL EDITORIAL MOTION SYSTEM
-         Remove this block and its matching CSS block to disable it.
-         ================================================================ */
-      // Keep the optional motion layer disabled. The page already has its own
-      // reveal observer above; enabling both systems can leave content hidden.
-
       const motionGroups = {
-        heading: document.querySelectorAll(
-          ".services-head h2, .editorial-heading, .about-title, .resource h2, .closing h2",
-        ),
-        rise: document.querySelectorAll(
-          ".section-label, .services-head p, .about-intro, .about-body, .content-note, .resource-copy > p, .closing-row p",
-        ),
-        // The hero already has its own reveal through .hero-stage.is-visible.
-        // Applying the second clip-path animation here could leave it fully
-        // clipped in some browsers even though the image loaded correctly.
+        heading: document.querySelectorAll(".services-head h2, .about-title, .closing h2"),
+        rise: document.querySelectorAll(".section-label, .services-head p, .about-intro, .about-body, .content-note, .mission-panel p, .closing-row p"),
         image: document.querySelectorAll(".about-image"),
         line: document.querySelectorAll(".service, .closing-row"),
-        stagger: document.querySelectorAll(
-          ".process-grid, .quote-list, .logos-inner, .footer-grid, .resource-form",
-        ),
-        button: document.querySelectorAll(
-          ".resource-form button, .closing-button",
-        ),
+        stagger: document.querySelectorAll(".footer-grid"),
+        button: document.querySelectorAll(".closing-button"),
       };
-
       motionGroups.heading.forEach((element) => element.classList.add("motion-heading"));
       motionGroups.rise.forEach((element) => element.classList.add("motion-rise"));
       motionGroups.image.forEach((element) => element.classList.add("motion-image"));
       motionGroups.line.forEach((element) => element.classList.add("motion-line"));
       motionGroups.stagger.forEach((element) => element.classList.add("motion-stagger"));
       motionGroups.button.forEach((element) => element.classList.add("motion-button"));
-      document.querySelector(".about-pull").classList.add("motion-rise");
-
-      const motionTargets = document.querySelectorAll(
-        ".motion-rise, .motion-heading, .motion-image, .motion-line, .motion-stagger, .motion-button",
-      );
-
+      const motionTargets = document.querySelectorAll(".motion-rise, .motion-heading, .motion-image, .motion-line, .motion-stagger, .motion-button");
       if (reducedMotion) {
         motionTargets.forEach((element) => element.classList.add("motion-visible"));
         document.body.classList.add("motion-started");
       } else {
-        const motionObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (!entry.isIntersecting) return;
-              entry.target.classList.add("motion-visible");
-              motionObserver.unobserve(entry.target);
-            });
-          },
-          { threshold: 0.14, rootMargin: "0px 0px -6% 0px" },
-        );
-
+        const motionObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("motion-visible");
+            motionObserver.unobserve(entry.target);
+          });
+        }, { threshold: 0.14, rootMargin: "0px 0px -6% 0px" });
         motionTargets.forEach((element) => motionObserver.observe(element));
-        requestAnimationFrame(() =>
-          requestAnimationFrame(() => document.body.classList.add("motion-started")),
-        );
+        requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add("motion-started")));
       }
     </script>
   </body>

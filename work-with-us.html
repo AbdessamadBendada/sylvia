@@ -1891,33 +1891,112 @@
         .nav-collapse { padding-top: 96px; }
         .nav-collapse .nav-links { font-size: 1.3rem; }
       }
-      .resource-cta {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        min-height: 54px;
-        margin-top: 30px;
-        border-radius: 999px;
-        background: var(--navy);
-        color: var(--white);
-        font-size: 0.7rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        transition: 0.25s ease;
+      /* Work with us: dossier layout, scoped to this page. */
+      .work-static .work-hero { padding: clamp(64px, 8vw, 120px) 0 clamp(72px, 9vw, 140px); }
+      .work-static .work-hero h1 { max-width: 16ch; margin: 34px 0 0; font-family: "Stack Sans Headline", sans-serif; font-size: clamp(2.5rem, 5.9vw, 6.3rem); font-weight: 500; letter-spacing: -0.06em; line-height: 0.85; text-transform: uppercase; }
+      .work-static .work-hero h1 em { color: var(--orange); font-style: normal; }
+      .work-static .work-standfirst { max-width: 30ch; margin: 34px 0 0; font-family: "Stack Sans Headline", sans-serif; font-size: clamp(1.15rem, 1.7vw, 1.75rem); font-weight: 500; letter-spacing: -0.025em; line-height: 1.18; }
+      .work-static .work-meta { max-width: 42ch; margin: 26px 0 0; color: var(--muted); font-size: 0.95rem; line-height: 1.65; }
+      .work-static .dossier { display: grid; grid-template-columns: 264px minmax(0, 1fr); border-top: 1px solid var(--line); }
+      /* Full-height accordion rail. The three entries divide the viewport between
+         them so the column never shows dead space; the active offer takes roughly
+         twice the height of the other two and they compress to make room. */
+      .work-static .offer-index { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; padding: 0; }
+      .work-static .offer-index a { flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding: 24px 26px; color: var(--navy); text-transform: uppercase; transition: flex-grow 0.6s cubic-bezier(0.2, 0.7, 0.2, 1), background 0.5s ease, color 0.4s ease; }
+      .work-static .offer-index a + a { border-top: 1px solid var(--line); }
+      .work-static .offer-index .oi-num { color: var(--orange); font-family: "Stack Sans Headline", sans-serif; font-size: 1.35rem; letter-spacing: -0.03em; line-height: 1; transition: font-size 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+      .work-static .offer-index .oi-name { max-width: 11ch; font-size: 0.86rem; letter-spacing: 0.07em; line-height: 1.28; transition: opacity 0.4s ease; }
+      /* The active block is the same navy as the dark offer panel, and the column
+         divider is a light hairline that disappears against it. This keeps a visible
+         edge so the rail does not merge into panel 02. */
+      .work-static .offer-index a.is-active { flex-grow: 1.9; background: var(--navy); color: var(--white); box-shadow: inset -1px 0 0 rgba(250, 250, 250, 0.24); }
+      .work-static .offer-index a.is-active .oi-num { font-size: 2rem; }
+      .work-static .offer-index a:not(.is-active) .oi-name { opacity: 0.62; }
+      .work-static .offer-index a:not(.is-active):hover .oi-name { opacity: 1; }
+      .work-static .offer-panels { min-width: 0; border-left: 1px solid var(--line); }
+      .work-static .offer { padding: clamp(58px, 8vw, 116px) clamp(30px, 7vw, 116px); display: grid; grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr); gap: clamp(42px, 7vw, 120px); scroll-margin-top: 30px; }
+      /* The lede rides alongside the inclusion list so long offers do not strand
+         the numeral and price chips at the top of a tall panel. */
+      .work-static .offer-lede { position: sticky; top: 46px; align-self: start; }
+      .work-static .offer--dark { background: var(--navy); color: var(--white); }
+      .work-static .offer-number { display: block; margin-bottom: 26px; color: var(--orange); font-family: "Stack Sans Headline", sans-serif; font-size: clamp(2.9rem, 5.3vw, 5.7rem); font-weight: 500; letter-spacing: -0.07em; line-height: 0.78; }
+      /* The longest offer name is "The Investor-Ready Financial Model"; balance
+         keeps it from breaking to a stranded "READY" and never exceeds the column. */
+      .work-static .offer h2 { max-width: 14ch; margin: 0; font-family: "Stack Sans Headline", sans-serif; font-size: clamp(2.1rem, 3.6vw, 4rem); font-weight: 500; letter-spacing: -0.055em; line-height: 0.9; text-transform: uppercase; }
+      /* Keeps "Investor-Ready" from breaking at its hyphen and stranding "READY". */
+      .work-static .offer h2 .nb { white-space: nowrap; }
+      .work-static .offer-promise { max-width: 27ch; margin: 26px 0 0; font-family: "Stack Sans Headline", sans-serif; font-size: clamp(1.1rem, 1.55vw, 1.55rem); letter-spacing: -0.025em; line-height: 1.16; }
+      .work-static .offer-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 30px; }
+      .work-static .offer-chips span { padding: 8px 10px; border: 1px solid currentColor; font-size: 0.65rem; letter-spacing: 0.07em; text-transform: uppercase; }
+      .work-static .offer-copy > p { max-width: 54ch; margin: 0; font-size: 0.95rem; line-height: 1.75; }
+      .work-static .offer-copy > p + p { margin-top: 20px; }
+      .work-static .offer-copy ul + p { margin-top: 30px; }
+      .work-static .offer-copy h3 { margin: 40px 0 0; padding-top: 15px; border-top: 1px solid currentColor; font-size: 0.68rem; letter-spacing: 0.11em; text-transform: uppercase; }
+      .work-static .offer-copy ul { margin: 16px 0 0; padding: 0; list-style: none; }
+      .work-static .offer-copy li { padding: 12px 0; border-bottom: 1px solid currentColor; font-size: 0.9rem; line-height: 1.45; }
+      .work-static .offer-copy li::before { content: "—"; margin-right: 10px; color: var(--orange); }
+      .work-static .offer-for { margin-top: 30px !important; padding-left: 16px; border-left: 3px solid var(--orange); }
+      .work-static .offer-for strong { display: block; margin-bottom: 7px; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; }
+      .work-static .offer-cta { display: inline-flex; align-items: center; gap: 14px; margin-top: 34px; padding-bottom: 7px; border-bottom: 1px solid currentColor; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.25s ease, transform 0.25s ease; }
+      .work-static .offer-cta span { color: var(--orange); transition: transform 0.25s ease; }
+      .work-static .offer-cta:hover { color: var(--blue); }
+      .work-static .offer-cta:hover span { transform: translate(3px, -3px); }
+      .work-static .offer--dark .offer-cta:hover { color: var(--white); }
+      .work-static .content-note { max-width: 50ch; margin-top: 18px; }
+      .work-static .fit-band { padding: clamp(78px, 10vw, 150px) 0; background: var(--navy); color: var(--white); }
+      .work-static .fit-band-inner { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(42px, 9vw, 150px); align-items: end; }
+      .work-static .fit-band h2 { max-width: 12ch; margin: 0; font-family: "Stack Sans Headline", sans-serif; font-size: clamp(2.2rem, 4.5vw, 4.95rem); font-weight: 500; letter-spacing: -0.055em; line-height: 0.88; text-transform: uppercase; }
+      .work-static .fit-copy { max-width: 46ch; margin: 30px 0 0; font-size: 0.98rem; line-height: 1.7; }
+      .work-static .pull-quote { max-width: 18ch; margin: 0 0 34px; color: var(--orange); font-family: "Stack Sans Headline", sans-serif; font-size: clamp(1.45rem, 2.4vw, 2.65rem); letter-spacing: -0.04em; line-height: 1.02; }
+      .work-static .fit-band .closing-button { background: var(--orange); color: var(--navy); }
+      .work-static .fit-band .closing-button:hover { background: var(--white); color: var(--navy); }
+      .work-static .closing-portrait { margin-top: clamp(70px, 9vw, 130px); display: grid; grid-template-columns: 0.75fr 1.25fr; background: var(--paper); color: var(--navy); }
+      .work-static .closing-portrait img { width: 100%; height: 100%; min-height: 390px; object-fit: cover; object-position: center 18%; filter: grayscale(1); }
+      .work-static .closing-portrait-copy { padding: clamp(34px, 6vw, 82px); }
+      .work-static .closing-portrait-copy p { max-width: 36ch; margin: 28px 0 0; line-height: 1.7; }
+      @media (max-width: 1099px) {
+        .work-static .dossier { display: block; }
+        /* Back to a horizontal chip row: unwind the full-height accordion. */
+        .work-static .offer-index { position: sticky; top: 0; z-index: 4; height: auto; flex-direction: row; gap: 8px; overflow-x: auto; padding: 12px var(--pad); border-bottom: 1px solid var(--line); background: var(--paper); scroll-snap-type: x mandatory; }
+        .work-static .offer-index a { flex: 0 0 auto; flex-direction: row; align-items: baseline; gap: 7px; padding: 12px 14px; border: 1px solid var(--line); scroll-snap-align: start; }
+        .work-static .offer-index a + a { border-top: 1px solid var(--line); }
+        .work-static .offer-index a.is-active { flex-grow: 0; }
+        .work-static .offer-index .oi-num { font-size: 0.78rem; }
+        .work-static .offer-index a.is-active .oi-num { font-size: 0.78rem; }
+        .work-static .offer-index .oi-num::after { content: " /"; }
+        .work-static .offer-index .oi-name { max-width: none; font-size: 0.72rem; }
+        .work-static .offer-index a:not(.is-active) .oi-name { opacity: 1; }
+        .work-static .offer-panels { border-left: 0; }
       }
-      .resource-cta:hover { background: var(--white); color: var(--navy); }
+      @media (max-width: 850px) {
+        .work-static .offer, .work-static .fit-band-inner, .work-static .closing-portrait { grid-template-columns: 1fr; }
+        .work-static .offer { min-height: 0; }
+        /* Stacked one-up there is no second column to ride alongside. */
+        .work-static .offer-lede { position: static; }
+        .work-static .closing-portrait img { min-height: 320px; }
+      }
+      @media (max-width: 640px) {
+        .work-static .work-hero { padding-block: 58px 76px; }
+        .work-static .work-hero h1 { font-size: clamp(2rem, 9.4vw, 3.1rem); line-height: 0.92; }
+        .work-static .work-standfirst { font-size: 1.1rem; margin-top: 28px; }
+        .work-static .offer { padding-inline: var(--pad); }
+        .work-static .offer h2 { font-size: clamp(1.9rem, 8.6vw, 2.9rem); }
+        .work-static .offer-number { font-size: 2.6rem; margin-bottom: 20px; }
+        .work-static .offer-promise { font-size: 1.1rem; }
+        .work-static .fit-band { padding-block: 72px; }
+        .work-static .fit-copy { margin-top: 26px; font-size: 0.94rem; }
+      }
     </style>
   </head>
-  <body>
+  <body class="work-static">
     <header class="nav">
       <div class="shell nav-inner">
-        <a class="brand" href="#top" aria-label="Digit Finance home"><img src="assets/logo.png" alt="Digit Finance" decoding="async" /></a>
+        <a class="brand" href="index.html" aria-label="Digit Finance home"><img src="assets/logo.png" alt="Digit Finance" decoding="async" /></a>
         <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Open menu"><span></span><span></span></button>
         <div class="nav-collapse" id="primary-nav">
           <nav class="nav-links" aria-label="Primary navigation">
-            <a href="#approach">Approach</a>
-            <a href="work-with-us.html">Services</a>
+            <a href="index.html#approach">Approach</a>
+            <a href="work-with-us.html" aria-current="page">Services</a>
             <a href="about-2.html">About</a>
             <a href="free-template.html">Free</a>
             <a href="contact.html">Contact</a>
@@ -1954,492 +2033,71 @@
         });
       })();
     </script>
-
     <main id="top">
-      <section class="hero shell">
-        <div class="hero-meta">
-          <span>Financial advisory and fractional CFO support</span>
-          <p>
-            AI-powered speed and board-level judgment for founders raising Seed to Series B.
-          </p>
-        </div>
-        <h1 class="hero-title">
-          <span class="line"><span class="word">Numbers that get you <em>funded</em></span></span>
-        </h1>
-
-        <div class="hero-stage" data-observe>
-          <div class="hero-portrait">
-            <img
-              src="assets/sylvia-website.webp"
-              alt="Sylvia Cebanu, founder of Digit Finance"
-            />
-          </div>
-          <div class="hero-panel">
-            <span class="hero-panel-index">01 / The Founder Problem</span>
-            <blockquote data-word-reveal>
-              Startup founders are brilliant at building their product, but
-              when the numbers don't hold up, the cash flow, the model, the
-              story investors need to hear, the best ideas in the world
-              <span>don't get funded.</span>
-            </blockquote>
-            <div class="hero-panel-footer">
-              <span>Fractional CFO</span>
-              <span>US · UK · EU</span> 
-            </div>
-          </div>
-        </div>
+      <section class="work-hero shell">
+        <div class="section-label">Work with us</div>
+        <h1>The numbers are ready. The story is told. The room is <em>yours.</em></h1>
+        <p class="work-standfirst">Your financial model shouldn’t just add up. It should tell a story investors believe.</p>
+        <p class="work-meta">AI for speed. Expert for trust. Set up to scale.</p>
       </section>
-
-      <section class="statement" id="approach">
-        <div class="shell">
-          <div class="section-label">The Partnership</div>
-          <p class="statement-copy" data-scroll-reveal>
-            We pair AI-powered speed with board-level judgment to turn fast-moving startups into investor-ready businesses
-          </p>
-
-          <div class="metrics" data-reveal>
-            <div class="metric">
-              <strong data-count="250" data-prefix="€" data-suffix="M+">€250M+</strong>
-              <span>Capital raised by supported founders</span>
-            </div>
-            <div class="metric">
-              <strong data-count="100" data-suffix="+">100+</strong>
-              <span>Startups supported from pre-seed to scale-up</span>
-            </div>
-            <div class="metric">
-              <strong data-count="14" data-suffix=" yrs">14 yrs</strong>
-              <span>Senior corporate finance experience</span>
-            </div>
-          </div>
+      <div class="dossier">
+        <nav class="offer-index" aria-label="Offer index">
+          <a href="#strategy-hour" class="is-active"><span class="oi-num">01</span><span class="oi-name">Strategy hour</span></a>
+          <a href="#financial-model"><span class="oi-num">02</span><span class="oi-name">Financial model</span></a>
+          <a href="#fractional-cfo"><span class="oi-num">03</span><span class="oi-name">Fractional CFO</span></a>
+        </nav>
+        <div class="offer-panels">
+          <article class="offer" id="strategy-hour" data-reveal>
+            <div class="offer-lede"><span class="offer-number">01</span><h2>The Strategy&nbsp;Hour</h2><p class="offer-promise">Bring your biggest financial challenge. Leave with a plan.</p><div class="offer-chips"><span>One-time</span><span>Investment: £400</span></div></div>
+            <div class="offer-copy"><p>One focused session on the single decision that is holding everything else up. You send the context ahead, I prepare, and we solve it together on the call.</p><h3>What’s included</h3><ul><li>Bring your biggest financial challenge — messy model, investor deck, pricing, cash flow, or urgent board question</li><li>Send your context ahead. I prep, we solve it live</li><li>Walk away with a clear step-by-step action plan</li></ul><p class="offer-for"><strong>Who this is for</strong>Founders who need senior finance judgment on one decision before moving forward.</p><a class="offer-cta" href="#book" data-booking>Let’s talk <span aria-hidden="true">↗</span></a></div>
+          </article>
+          <article class="offer offer--dark" id="financial-model" data-reveal>
+            <div class="offer-lede"><span class="offer-number">02</span><h2>The <span class="nb">Investor-Ready</span> Financial&nbsp;Model</h2><p class="offer-promise">Not a template. A model built the way institutional investors expect to see it.</p><div class="offer-chips"><span>Delivered in 2–4 weeks</span><span>Investment: From £2,500</span></div></div>
+            <div class="offer-copy"><p>Every startup has numbers. Very few have numbers that make sense to the people writing the cheques.</p><p>This is a fully bespoke, bottom-up financial model built specifically around your business — your revenue streams, your pricing strategy, your hiring plan, your market assumptions. Not a template. Not a framework pulled from the internet. A model built the way institutional investors expect to see it, with logic behind every number and a narrative that holds up under scrutiny.</p><p>By the end, you won’t just have a spreadsheet. You’ll have the financial story of your business, and the confidence to walk into any investor meeting and defend it.</p><h3>What’s included</h3><ul><li>Deep-dive discovery session to understand your business model and key drivers</li><li>Fully bespoke bottom-up financial model in Excel</li><li>5-year projections covering P&amp;L, cash flow, and balance sheet</li><li>Revenue model with pricing strategy and unit economics</li><li>Hiring plan and headcount forecasting</li><li>Multiple investor scenarios (base, conservative, aggressive)</li><li>Delivery session walking you through every assumption</li><li>30-day support window for questions and adjustments</li></ul><p class="offer-for"><strong>Who this is for</strong>Founders at pre-seed to Series A who are preparing to raise capital, refining their business model, or need to present credible numbers to their board or investors for the first time.</p><a class="offer-cta" href="#book" data-booking>Build my financial model <span aria-hidden="true">↗</span></a></div>
+          </article>
+          <article class="offer" id="fractional-cfo" data-reveal>
+            <div class="offer-lede"><span class="offer-number">03</span><h2>Fractional CFO Partnership</h2><p class="offer-promise">The financial leadership your business needs. Without the full-time cost.</p><div class="offer-chips"><span>Minimum 3 months</span><span>Investment: From £3,000/month</span></div></div>
+            <div class="offer-copy"><p>At a certain stage, a founder needs more than a model. They need someone who understands the full picture — the cash, the team, the investors, the board — and can make fast, confident decisions alongside them.</p><p>That’s what a Fractional CFO Partnership with Sylvia looks like.</p><h3>What’s included</h3><ul><li>Monthly financial review and management accounts</li><li>Rolling 12-month forecast updated monthly</li><li>Budget vs actuals analysis with variance commentary</li><li>Cash flow management and runway clarity</li><li>Strategic hiring and investment decision support</li><li>Board and investor reporting</li><li>Investor meeting preparation and attendance</li><li>Direct access to Sylvia for time-sensitive decisions</li></ul><p>You get the strategic finance leadership of an experienced CFO, personally delivered, without the overhead of a full-time hire. Sylvia becomes your financial co-pilot: in the room for the conversations that matter, on the numbers before anyone else notices a problem, and at board level when it counts.</p><p>This is not a check-in service. It’s a partnership built around the specific stage, pace and ambition of your business.</p><p class="offer-for"><strong>Who this is for</strong>Founders at Seed to Series B who are scaling fast, preparing for their next funding round, or navigating a period of rapid growth and need experienced financial leadership in their corner — not just at the end of the quarter.</p><!-- ASSET PENDING: "Sylvia working with a person" photograph --><a class="offer-cta" href="#book" data-booking>Let’s talk <span aria-hidden="true">↗</span></a></div>
+          </article>
         </div>
-      </section>
-
-      <section class="services" id="services">
-        <div class="shell">
-          <div class="services-head" data-reveal>
-            <h2>How we work</h2>
-            <p>
-              From a critical one-off model to an ongoing seat at the table,
-              the engagement adapts to the stage and decisions ahead.
-            </p>
-          </div>
-          <div class="service-list">
-            <a class="service" href="work-with-us.html#strategy-hour" data-reveal>
-              <span class="service-index">01.</span>
-              <h3>Strategy hour</h3>
-              <p class="service-info">
-                Bring the messiest model, deck or board question and leave with
-                a clear action plan.
-              </p>
-              <span class="service-arrow">↗</span>
-            </a>
-            <a class="service" href="work-with-us.html#financial-model" data-reveal>
-              <span class="service-index">02.</span>
-              <h3>Financial model</h3>
-              <p class="service-info">
-                A bespoke bottom-up model built around your business, numbers
-                and fundraising story. Delivered in 2 to 4 weeks.
-              </p>
-              <span class="service-arrow">↗</span>
-            </a>
-            <a class="service" href="work-with-us.html#fractional-cfo" data-reveal>
-              <span class="service-index">03.</span>
-              <h3>Fractional CFO</h3>
-              <p class="service-info">
-                Ongoing forecasting, cash flow, board reporting and senior
-                financial leadership when it matters.
-              </p>
-              <span class="service-arrow">↗</span>
-            </a>
-          </div>
+      </div>
+      <section class="fit-band" id="book">
+        <div class="shell fit-band-inner" data-reveal>
+          <div><div class="section-label">The right fit</div><h2>Not sure which is the right fit?</h2><p class="fit-copy">Book a free 20-minute call and we’ll figure it out together. No pressure, no pitch — just an honest conversation about where your business is and what it actually needs.</p></div>
+          <div><p class="pull-quote">“A wrong number doesn’t cost her fee. It costs the round.”</p><a class="closing-button" href="#book" data-booking>Book a call <span aria-hidden="true">↗</span></a></div>
         </div>
-      </section>
-
-      <section class="process" id="process">
-        <div class="shell">
-          <div class="section-label">How it works</div>
-          <h2 class="editorial-heading" data-reveal>
-            What working together looks like
-          </h2>
-          <div class="process-grid" data-reveal>
-            <article class="process-step">
-              <small>01 / Start</small>
-              <h3>Discovery call</h3>
-              <p>
-                A free call to understand the business, its stage and where the
-                numbers need to go.
-              </p>
-            </article>
-            <article class="process-step">
-              <small>02 / Understand</small>
-              <h3>Deep dive</h3>
-              <p>
-                A working session to map the model, drivers and assumptions so
-                everything reflects reality.
-              </p>
-            </article>
-            <article class="process-step">
-              <small>03 / Build</small>
-              <h3>Build &amp; review</h3>
-              <p>
-                Sylvia builds, then walks you through every number and the
-                thinking behind it.
-              </p>
-            </article>
-            <article class="process-step">
-              <small>04 / Partner</small>
-              <h3>In your corner</h3>
-              <p>
-                Ongoing support through board meetings, investor calls and the
-                decisions between.
-              </p>
-            </article>
-          </div>
-          <p class="content-note">
-            Placeholder process, to be confirmed with Sylvia.
-          </p>
+        <div class="shell closing-portrait">
+          <!-- ASSET PENDING: portrait beside each offer and Sylvia working with a person photograph -->
+          <img src="assets/sylvia.webp" alt="Sylvia Cebanu, founder of Digit Finance" loading="lazy" decoding="async" />
+          <div class="closing-portrait-copy"><div class="section-label">Digit Finance</div><h2 class="editorial-heading">Clarity for the room ahead.</h2><p>hello@digitfinance.com<br />London, UK</p></div>
         </div>
-      </section>
-
-      <section class="about" id="about">
-        <div class="shell about-grid">
-          <div class="about-image" data-reveal>
-            <img src="assets/sylvia.webp" alt="Sylvia Cebanu" loading="lazy" />
+        <footer class="footer shell">
+          <div class="footer-grid">
+            <div><a class="footer-brand" href="index.html" aria-label="Digit Finance home"><img src="assets/logo.png" alt="Digit Finance" decoding="async" /></a></div>
+            <div><h3>Contact</h3><div class="footer-links"><a href="mailto:hello@digitfinance.com">hello@digitfinance.com</a><a href="tel:+440000000000">+44 (0) 000 000 0000</a><p>London, UK</p></div></div>
+            <div><h3>Legal</h3><div class="footer-links"><a href="#">Imprint</a><a href="#">Terms &amp; Conditions</a><a href="#">Privacy Policy</a><a href="#">Cookies</a></div></div>
+            <div><h3>Occasional notes on startup finance</h3><form class="footer-newsletter" action="#" method="post"><input type="email" name="email" autocomplete="email" placeholder="Your email" aria-label="Newsletter email" required /><button type="submit" aria-label="Subscribe">↗</button></form></div>
           </div>
-          <div class="about-copy" data-reveal>
-            <div class="section-label">About the founder</div>
-            <h2 class="about-title">Hi, I’m <span>Sylvia.</span></h2>
-            <p class="about-intro">
-              The person founders call when the numbers stop matching the
-              story.
-            </p>
-            <p class="about-body">
-              
-              Sylvia Cebanu is a fractional CFO and financial advisor to startups with 14 years of experience in corporate finance across the US, UK, and EU. Having built financial foundations for more than 100 startups from pre-seed to scale-up, Sylvia's work spans some of the most complex, fast-moving sectors in the startup world: fintech, SaaS, AI, robotics, edtech, biotech, and media, where she builds the financial foundations founders need to make stronger decisions, raise capital and grow with confidence.
-
-            </p>
-            <p class="about-pull">
-              You should feel proud of the business you're building, not just
-              relieved it survived another quarter.
-            </p>
-            <a class="about-link" href="about-2.html">Learn more about Sylvia <span>↗</span></a>
-          </div>
-        </div>
-      </section>
-
-      <section class="logos" aria-label="Selected clients">
-        <div class="shell logos-inner" data-reveal>
-          <p>Trusted by ambitious founders across</p>
-          <img src="assets/Logo-Fractional.png" alt="Fractional Group" loading="lazy" />
-          <img src="assets/upcelerator_logo.png" alt="Upcelerator" loading="lazy" />
-          <img src="assets/payall-logo.png" alt="Payall" loading="lazy" />
-        </div>
-      </section>
-
-      <section class="resource" id="free">
-        <div class="shell resource-grid">
-          <div class="resource-copy" data-reveal>
-            <div class="section-label">Free for early-stage founders</div>
-            <h2>Before the business, build the numbers.</h2>
-            <p>
-              A plug-and-play Excel template for revenue, costs, cash flow and
-              growth assumptions—plus a walkthrough of what investors actually
-              look for.
-            </p>
-          </div>
-          <a class="resource-cta" href="free-template.html" data-reveal>Download the free template ↗</a>
-        </div>
-      </section>
-
-      <section class="testimonials">
-        <div class="shell">
-          <div class="section-label">Founder perspective</div>
-          <h2 class="editorial-heading" data-reveal>What founders say</h2>
-          <div class="quote-list">
-            <article class="quote-row" data-reveal>
-              <span>01.</span>
-              <blockquote>
-                “Sylvia rebuilt our model from scratch and we walked into our
-                Series A able to defend every number.”
-              </blockquote>
-              <p class="quote-person">
-                <strong>Founder name</strong>
-                CEO, Company
-              </p>
-            </article>
-            <article class="quote-row" data-reveal>
-              <span>02.</span>
-              <blockquote>
-                “The clarity she gave us cut weeks off our raise and changed
-                how our board saw the business.”
-              </blockquote>
-              <p class="quote-person">
-                <strong>Founder name</strong>
-                Founder, Company
-              </p>
-            </article>
-            <article class="quote-row" data-reveal>
-              <span>03.</span>
-              <blockquote>
-                “Having Sylvia in the room for investor calls was the
-                difference between hoping and knowing.”
-              </blockquote>
-              <p class="quote-person">
-                <strong>Founder name</strong>
-                Co-founder, Company
-              </p>
-            </article>
-          </div>
-          <p class="content-note">
-            Placeholder testimonials, to be replaced with real quotes, names
-            and outcomes.
-          </p>
-        </div>
-      </section>
-
-      <section class="closing">
-        <div class="shell">
-          <h2 data-reveal>Ready to make the numbers <span>work?</span></h2>
-          <div class="closing-row" data-reveal>
-            <p>
-              Tell us where the business is going and what is getting in the
-              way. We will make the next financial decision clearer.
-            </p>
-            <a class="closing-button" href="mailto:hello@digitfinance.com">
-              Book a call <span>↗</span>
-            </a>
-          </div>
-          <footer class="footer">
-            <div class="footer-grid">
-              <div>
-                <a class="footer-brand" href="#top" aria-label="Digit Finance home">
-                  <img src="assets/logo.png" alt="Digit Finance" />
-                </a>
-              </div>
-              <div>
-                <h3>Contact</h3>
-                <div class="footer-links">
-                  <a href="mailto:hello@digitfinance.com">hello@digitfinance.com</a>
-                  <a href="tel:+440000000000">+44 (0) 000 000 0000</a>
-                  <p>London, UK</p>
-                </div>
-              </div>
-              <div>
-                <h3>Legal</h3>
-                <div class="footer-links">
-                  <a href="#">Imprint</a>
-                  <a href="#">Terms &amp; Conditions</a>
-                  <a href="#">Privacy Policy</a>
-                  <a href="#">Cookies</a>
-                </div>
-              </div>
-              <div>
-                <h3>Occasional notes on startup finance</h3>
-                <form class="footer-newsletter" action="#" method="post">
-                  <input
-                    type="email"
-                    name="email"
-                    autocomplete="email"
-                    placeholder="Your email"
-                    aria-label="Newsletter email"
-                    required
-                  />
-                  <button type="submit" aria-label="Subscribe">↗</button>
-                </form>
-              </div>
-            </div>
-            <div class="footer-bottom">
-              <span>© <span id="year"></span> Digit Finance</span>
-              <span>Strategic finance for ambitious founders</span>
-            </div>
-          </footer>
-        </div>
+          <div class="footer-bottom"><span>© <span id="year"></span> Digit Finance</span><span>Strategic finance for ambitious founders</span></div>
+        </footer>
       </section>
     </main>
-
     <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
-
+      const BOOKING_URL = "";
+      const bookingFallback = "mailto:hello@digitfinance.com";
+      document.querySelectorAll("[data-booking]").forEach((link) => { link.href = BOOKING_URL || bookingFallback; });
+      document.getElementById("year")?.replaceChildren(String(new Date().getFullYear()));
       const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      document.querySelectorAll("[data-word-reveal]").forEach((element) => {
-        const sentence = element.textContent.trim().replace(/\s+/g, " ");
-        element.setAttribute("aria-label", sentence);
-        element.innerHTML = sentence
-          .split(" ")
-          .map(
-            (word, index) =>
-              `<span class="reveal-word" aria-hidden="true" style="--delay:${index * 28}ms">${word}&nbsp;</span>`,
-          )
-          .join("");
-      });
-
-      const scrollStatement = document.querySelector("[data-scroll-reveal]");
-      const scrollSection = scrollStatement.closest(".statement");
-      const scrollMetrics = scrollSection.querySelector(".metrics");
-      const scrollSentence = scrollStatement.textContent.trim().replace(/\s+/g, " ");
-
-      scrollStatement.setAttribute("aria-label", scrollSentence);
-      scrollStatement.innerHTML = scrollSentence
-        .split(" ")
-        .map((word) => `<span class="scroll-word" aria-hidden="true">${word}&nbsp;</span>`)
-        .join("");
-
-      const scrollWords = [...scrollStatement.querySelectorAll(".scroll-word")];
-      let scrollTicking = false;
-
-      function updateScrollStatement() {
-        const rect = scrollSection.getBoundingClientRect();
-        const range = Math.max(scrollSection.offsetHeight - innerHeight, 1);
-        const progress = Math.min(Math.max(-rect.top / range, 0), 1);
-        const wordProgress = Math.min(progress / 0.74, 1);
-
-        scrollWords.forEach((word, index) => {
-          const wordPosition = scrollWords.length > 1
-            ? index / (scrollWords.length - 1)
-            : 0;
-          const start = wordPosition * 0.72;
-          const reveal = Math.min(
-            Math.max((wordProgress - start) / 0.28, 0),
-            1,
-          );
-          word.style.setProperty("--word-opacity", (0.14 + reveal * 0.86).toFixed(3));
-          word.style.setProperty("--word-y", `${(1 - reveal) * 0.15}em`);
-          word.style.setProperty("--word-scale", (0.986 + reveal * 0.014).toFixed(3));
-        });
-
-        const metricsReveal = Math.min(Math.max((progress - 0.82) / 0.18, 0), 1);
-        scrollMetrics.style.setProperty("--metrics-opacity", metricsReveal.toFixed(3));
-        scrollMetrics.style.setProperty("--metrics-y", `${(1 - metricsReveal) * 18}px`);
-        if (progress >= 0.82) {
-          scrollMetrics.querySelectorAll("[data-count]").forEach(animateCount);
-        }
-        scrollTicking = false;
-      }
-
-      function requestScrollStatement() {
-        if (scrollTicking || reducedMotion) return;
-        requestAnimationFrame(updateScrollStatement);
-        scrollTicking = true;
-      }
-
-      function animateCount(element) {
-        if (element.dataset.done || reducedMotion) return;
-        element.dataset.done = "true";
-        const target = Number(element.dataset.count);
-        const prefix = element.dataset.prefix || "";
-        const suffix = element.dataset.suffix || "";
-        const start = performance.now();
-        const duration = 1100;
-
-        function frame(now) {
-          const progress = Math.min((now - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          element.textContent = `${prefix}${Math.round(target * eased)}${suffix}`;
-          if (progress < 1) requestAnimationFrame(frame);
-        }
-
-        requestAnimationFrame(frame);
-      }
-
-      if (reducedMotion) {
-        scrollWords.forEach((word) => {
-          word.style.setProperty("--word-opacity", "1");
-          word.style.setProperty("--word-y", "0em");
-          word.style.setProperty("--word-scale", "1");
-        });
-        scrollMetrics.style.setProperty("--metrics-opacity", "1");
-        scrollMetrics.style.setProperty("--metrics-y", "0px");
-        document.body.classList.add("ready");
-        document
-          .querySelectorAll("[data-reveal], [data-word-reveal], [data-observe]")
-          .forEach((element) => element.classList.add("is-visible"));
-      } else {
-        updateScrollStatement();
-        addEventListener("scroll", requestScrollStatement, { passive: true });
-        addEventListener("resize", requestScrollStatement);
-        requestAnimationFrame(() => document.body.classList.add("ready"));
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (!entry.isIntersecting) return;
-              entry.target.classList.add("is-visible");
-              entry.target
-                .querySelectorAll("[data-count]")
-                .forEach(animateCount);
-              observer.unobserve(entry.target);
-            });
-          },
-          { threshold: 0.18 },
-        );
-
-        document
-          .querySelectorAll("[data-reveal], [data-word-reveal], [data-observe]")
-          .forEach((element) => {
-            if (element !== scrollMetrics) observer.observe(element);
-          });
-      }
-
-      /* ================================================================
-         OPTIONAL EDITORIAL MOTION SYSTEM
-         Remove this block and its matching CSS block to disable it.
-         ================================================================ */
-      // Keep the optional motion layer disabled. The page already has its own
-      // reveal observer above; enabling both systems can leave content hidden.
-
-      const motionGroups = {
-        heading: document.querySelectorAll(
-          ".services-head h2, .editorial-heading, .about-title, .resource h2, .closing h2",
-        ),
-        rise: document.querySelectorAll(
-          ".section-label, .services-head p, .about-intro, .about-body, .content-note, .resource-copy > p, .closing-row p",
-        ),
-        // The hero already has its own reveal through .hero-stage.is-visible.
-        // Applying the second clip-path animation here could leave it fully
-        // clipped in some browsers even though the image loaded correctly.
-        image: document.querySelectorAll(".about-image"),
-        line: document.querySelectorAll(".service, .closing-row"),
-        stagger: document.querySelectorAll(
-          ".process-grid, .quote-list, .logos-inner, .footer-grid, .resource-form",
-        ),
-        button: document.querySelectorAll(
-          ".resource-form button, .closing-button",
-        ),
-      };
-
-      motionGroups.heading.forEach((element) => element.classList.add("motion-heading"));
-      motionGroups.rise.forEach((element) => element.classList.add("motion-rise"));
-      motionGroups.image.forEach((element) => element.classList.add("motion-image"));
-      motionGroups.line.forEach((element) => element.classList.add("motion-line"));
-      motionGroups.stagger.forEach((element) => element.classList.add("motion-stagger"));
-      motionGroups.button.forEach((element) => element.classList.add("motion-button"));
-      document.querySelector(".about-pull").classList.add("motion-rise");
-
-      const motionTargets = document.querySelectorAll(
-        ".motion-rise, .motion-heading, .motion-image, .motion-line, .motion-stagger, .motion-button",
-      );
-
-      if (reducedMotion) {
-        motionTargets.forEach((element) => element.classList.add("motion-visible"));
-        document.body.classList.add("motion-started");
-      } else {
-        const motionObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (!entry.isIntersecting) return;
-              entry.target.classList.add("motion-visible");
-              motionObserver.unobserve(entry.target);
-            });
-          },
-          { threshold: 0.14, rootMargin: "0px 0px -6% 0px" },
-        );
-
-        motionTargets.forEach((element) => motionObserver.observe(element));
-        requestAnimationFrame(() =>
-          requestAnimationFrame(() => document.body.classList.add("motion-started")),
-        );
-      }
+      // Ratio thresholds are unusable here: an offer panel is taller than the
+      // viewport, so it can never reach a 0.15/0.5 visible ratio. Both observers
+      // key off viewport position instead, which is height-independent.
+      const revealObserver = new IntersectionObserver((entries) => { entries.forEach((entry) => { if (!entry.isIntersecting) return; entry.target.classList.add("is-visible"); revealObserver.unobserve(entry.target); }); }, { threshold: 0, rootMargin: "0px 0px -12% 0px" });
+      document.querySelectorAll("[data-reveal]").forEach((element) => revealObserver.observe(element));
+      const indexLinks = [...document.querySelectorAll(".offer-index a")];
+      // Active offer = whichever panel straddles the middle of the viewport.
+      const offerObserver = new IntersectionObserver((entries) => { entries.forEach((entry) => { if (!entry.isIntersecting) return; indexLinks.forEach((link) => link.classList.toggle("is-active", link.getAttribute("href") === "#" + entry.target.id)); }); }, { threshold: 0, rootMargin: "-45% 0px -45% 0px" });
+      document.querySelectorAll(".offer").forEach((offer) => offerObserver.observe(offer));
+      if (reducedMotion) document.querySelectorAll("[data-reveal]").forEach((element) => element.classList.add("is-visible"));
     </script>
   </body>
 </html>
