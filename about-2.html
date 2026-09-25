@@ -833,6 +833,12 @@
         display: inline-block;
       }
 
+      /* Page nav sits under the logo in the wide first column: a fifth grid
+         column squeezed the phone number and legal links into wrapping. */
+      .footer-nav {
+        margin-top: 30px;
+      }
+
       .footer-brand img {
         width: min(100%, 210px);
         filter: brightness(0) invert(1);
@@ -852,6 +858,11 @@
       }
 
       .footer a:hover {
+        color: var(--orange);
+      }
+
+      /* Marks the page you are on in the footer nav, matching the header. */
+      .footer-links a[aria-current="page"] {
         color: var(--orange);
       }
 
@@ -1983,7 +1994,6 @@
       .about-static .statement {
         min-height: 0;
         padding: clamp(100px, 12vw, 190px) 0;
-        border-top: 1px solid var(--line);
       }
       .about-static .statement > .shell {
         position: static;
@@ -2000,8 +2010,6 @@
       .about-static .statement-follow {
         max-width: 36ch;
         margin: clamp(34px, 4.5vw, 56px) 0 0;
-        padding-left: 18px;
-        border-left: 3px solid var(--orange);
         font-family: "Stack Sans Headline", sans-serif;
         font-size: clamp(1.05rem, 1.55vw, 1.75rem);
         font-weight: 500;
@@ -2013,7 +2021,6 @@
          philosophy panel so the two quotes never read as the same component. */
       .about-static .fractional {
         padding: clamp(90px, 11vw, 165px) 0;
-        border-top: 1px solid var(--line);
       }
       .about-static .fractional-grid {
         display: grid;
@@ -2021,7 +2028,7 @@
         gap: clamp(40px, 6vw, 100px);
         align-items: start;
       }
-      .about-static .fractional-aside .section-label { margin-bottom: clamp(30px, 4vw, 48px); }
+      .about-static .fractional-portrait { width: 100%; aspect-ratio: 1318 / 1600; object-fit: cover; }
       .about-static .fractional-quote {
         max-width: 34ch;
         margin: 0;
@@ -2030,15 +2037,6 @@
         font-weight: 500;
         letter-spacing: -0.03em;
         line-height: 1.16;
-      }
-      .about-static .fractional-note {
-        max-width: 38ch;
-        margin: 0;
-        padding-top: 26px;
-        border-top: 1px solid var(--line);
-        color: var(--muted);
-        font-size: 0.9rem;
-        line-height: 1.75;
       }
 
       /* Mission and Vision: a true two-column panel pair. */
@@ -2130,10 +2128,12 @@
       .about-static .section-label { margin-bottom: clamp(26px, 2.6vw, 36px); }
       .about-static .about,
       .about-static .statement { padding: clamp(72px, 8.5vw, 140px) 0; }
+      .about-static .statement { padding-bottom: clamp(24px, 3vw, 48px); }
       .about-static .philosophy { padding: clamp(72px, 8.5vw, 136px) 0; }
       .about-static .metrics-band { padding: clamp(62px, 7.4vw, 116px) 0; }
       .about-static .fractional,
       .about-static .mission-vision { padding: clamp(66px, 8vw, 126px) 0; }
+      .about-static .fractional { padding-top: clamp(24px, 3vw, 48px); }
       .about-static .values { padding-top: clamp(70px, 8.4vw, 132px); }
       .about-static .services-head { margin-bottom: clamp(38px, 4.4vw, 52px); }
       .about-static .values .service { min-height: clamp(96px, 10.5vw, 148px); }
@@ -2373,7 +2373,6 @@
 
       <section class="statement" id="approach">
         <div class="shell">
-          <div class="section-label">The belief</div>
           <p class="statement-copy" data-scroll-reveal>
             Every number has a story.
           </p>
@@ -2386,13 +2385,7 @@
       <section class="fractional">
         <div class="shell fractional-grid">
           <div class="fractional-aside" data-reveal>
-            <div class="section-label">Fractional by design</div>
-            <p class="fractional-note">
-              That means staying in the room for the board meetings, the
-              investor calls, and the decisions in between — with the range that
-              comes from seeing the same problems solved across very different
-              businesses.
-            </p>
+            <img class="fractional-portrait" src="assets/sylvia.webp" alt="Sylvia Cebanu" loading="lazy" decoding="async" />
           </div>
           <blockquote class="fractional-quote" data-reveal>
             “I engage as deeply as a full-time executive. The main difference is
@@ -2501,7 +2494,7 @@
           </div>
           <footer class="footer">
             <div class="footer-grid">
-              <div><a class="footer-brand" href="index.html" aria-label="Digit Finance home"><img src="assets/logo.png" alt="Digit Finance" decoding="async" /></a></div>
+              <div><a class="footer-brand" href="index.html" aria-label="Digit Finance home"><img src="assets/logo.png" alt="Digit Finance" decoding="async" /></a><nav class="footer-links footer-nav" aria-label="Footer navigation"><a href="index.html#approach">Approach</a><a href="work-with-us.html">Services</a><a href="about-2.html" aria-current="page">About</a><a href="free-template.html">Free</a><a href="contact.html">Contact</a></nav></div>
               <div><h3>Contact</h3><div class="footer-links"><a href="mailto:hello@digitfinance.com">hello@digitfinance.com</a><a href="tel:+440000000000">+44 (0) 000 000 0000</a><p>London, UK</p></div></div>
               <div><h3>Legal</h3><div class="footer-links"><a href="#">Imprint</a><a href="#">Terms &amp; Conditions</a><a href="#">Privacy Policy</a><a href="#">Cookies</a></div></div>
               <div><h3>Occasional notes on startup finance</h3><form class="footer-newsletter" action="#" method="post"><input type="email" name="email" autocomplete="email" placeholder="Your email" aria-label="Newsletter email" required /><button type="submit" aria-label="Subscribe">↗</button></form></div>

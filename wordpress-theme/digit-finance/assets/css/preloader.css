@@ -1,0 +1,47 @@
+html.df-preloading,
+html.df-preloading body {
+  overflow: hidden;
+}
+
+.df-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: none;
+  place-items: center;
+  overflow: hidden;
+  background: #f2f2f4;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+html.df-preloading .df-preloader {
+  display: grid;
+}
+
+.df-preloader.is-playing {
+  animation: df-preloader-field 3.108s linear both;
+}
+
+.df-preloader img {
+  width: min(92vw, 832px);
+  height: auto;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 12%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 12%, #000 88%, transparent 100%);
+}
+
+.df-preloader.is-done {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes df-preloader-field {
+  0%, 73% { background: #f2f2f4; }
+  90%, 100% { background: #06013b; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .df-preloader {
+    display: none !important;
+  }
+}

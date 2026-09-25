@@ -1,6 +1,99 @@
 # Project Change Log
 
+## 2026-09-25
+
+### Repository checkpoint and source hygiene
+
+- Prepared the completed static-page refinements, homepage preloader, Divi migration package, Gutenberg prototypes, and canonical native WordPress theme for version control.
+- Updated `.gitignore` to keep machine-local Codex/browser state and root-level visual verification captures out of the repository while preserving the project-specific Divi toolkit configuration.
+- Verification: confirmed shared-shell parity across all five live pages; validated JavaScript syntax and JSON files; tested all ZIP archives; and ran `git diff --check` successfully.
+
+## 2026-09-16
+
+### Client review updates to three static pages
+
+- `free-template.html`: changed the opt-in hero to navy with an orange headline and button, white form controls, and navy text on the light workbook cover.
+- `about-2.html`: removed “The belief” eyebrow and the statement/fractional section dividers; replaced the fractional aside text with `assets/sylvia.webp` beside the quote on desktop and above it on mobile.
+- `work-with-us.html`: replaced the hero headline with “AI for speed. Expert for trust. Set up to scale.”, removed its eyebrow and duplicate tagline, and added an offers CTA. The three offer descriptions remain unchanged.
+- `AGENTS.md`: recorded the approved page treatments and portrait placement for future work.
+- Verification: inspected local Chrome renders at 1440px and 390px, including the About statement/portrait, free-template form/cover, and services hero; ran `git diff --check` and confirmed the derived pages retain the shared CSS shell from `index.html`.
+- Follow-up on `about-2.html`: removed the orange rule beside the statement's supporting sentence and reduced the combined padding between the statement and portrait/quote. Verified the revised transition at desktop and mobile widths.
+
+## 2026-09-07
+
+### Canonical native Gutenberg homepage foundation
+
+- Added the canonical standalone block theme at `wordpress-theme/digit-finance/`. It has no Divi, parent-theme, plugin, or custom-block dependency; normal content uses native WordPress Groups, Navigation, Images, Headings, Paragraphs, Quotes, and Buttons.
+- Recreated the approved header, Hero, and Partnership/metrics sections from `index.html`. The page copy, links, image, quote, labels, and metric values remain editable as normal Gutenberg blocks.
+- Kept behavior isolated from content: responsive layout and section styling live in `assets/css/`, while the homepage title/portrait/quote reveal, scroll-driven statement, metric counters, and homepage-only preloader live in `assets/js/`.
+- Added the reusable `Homepage — Hero and Partnership` block pattern and theme editor styles, plus a native responsive navigation with an editable mobile call-to-action.
+- Packaged version 0.1.2 as `wordpress-theme/digit-finance-gutenberg-0.1.2.zip` and installed it on staging. Created and published the sole `Home` page (ID 68), localized its portrait to the WordPress Media Library, and assigned it as the static homepage.
+- Verification: `theme.json` parses; both JavaScript files pass `node --check`; CSS braces, WordPress block-comment nesting, and block attribute JSON validate; the ZIP passes `unzip -t`; bundled images match the approved source assets by SHA-256; the theme installs and updates successfully under WordPress/PHP; the page opens in Gutenberg without invalid-block warnings; and live desktop/mobile checks confirm the responsive layouts, scroll reveal, counters, mobile navigation, no horizontal overflow, and no browser-console errors.
+- The approved `index.html` and all earlier local prototypes were preserved unchanged during this implementation.
+
+## 2026-09-06
+
+### Staging WordPress reset
+
+- Reset the staging site to a clean WordPress installation while preserving its domain configuration and sole administrator account.
+- Removed Divi, the custom `Digit Finance` theme, the older bundled themes, and all plugins. The official Twenty Twenty-Five theme is the only installed and active theme.
+- Permanently deleted all posts, pages (including `AI Test Homepage`, page ID 23), comments, and 17 uploaded media files. WordPress now reports zero items in each corresponding content area.
+- Preserved every local approved HTML, asset, and migration source file; the destructive reset applied only to the staging WordPress installation.
+- Verification: confirmed one administrator remains, no plugins are installed, only Twenty Twenty-Five is installed and active, content and media libraries are empty, and the public empty-site view loads without browser-console errors.
+
+### Gutenberg block-theme migration foundation
+
+- Added a new standalone, parentless WordPress block theme at `gutenberg-theme/digit-finance/`. It is intentionally separate from the approved static source and the prior Divi migration package.
+- Added a `theme.json` design system for the Digit palette, typography, responsive spacing and block-editor controls. Normal homepage content is built from editable core blocks (Groups, Columns, Headings, Paragraphs, Images, Buttons and Quotes), assembled in `patterns/homepage.php`.
+- Added template-part foundations for the editable site header and footer, plus a dedicated `page-ai-test-homepage.html` template so the staging page can be targeted without changing other pages during the first installation.
+- Copied only the homepage assets used by the block theme into its own `assets/` directory. The approved source assets and `index.html` were not changed.
+- Added the small `gutenberg-theme/digit-finance-behavior/` companion plugin. It contains no editable content: it supplies only a homepage-only preloader and progressive statement reveal, and leaves the page fully readable if JavaScript is unavailable or reduced motion is requested.
+- Verification: `git diff --check`, JavaScript syntax validation, CSS brace checks and WordPress block-comment balance checks pass. PHP CLI is unavailable in this workspace, so PHP lint and live WordPress rendering remain pending installation-stage validation.
+- Staging installation: installed and activated `Digit Finance Behaviour` 0.1.0, installed and activated the `Digit Finance` theme, assigned the dedicated template to page ID 23, published it, and set it as the site’s static homepage. Live browser verification confirms the editable core-block homepage, local theme assets, preloader dismissal and no browser-console errors. Theme package is now 0.1.2 after completing the editable header and footer patterns.
+
+## 2026-09-05
+
+### Homepage Divi migration package
+
+- Completed the local homepage migration package at `divi-migration/digit-finance-divi/` without modifying the approved static website or connecting to WordPress.
+- Kept only the editable `Digit Hero` and `Statement & Metrics` custom modules. Removed the retired custom Service List module from registration, its Divi 5 library bridge, and the package source.
+- Replaced the package's motion-only stylesheet with the approved homepage shell styling, added a Divi Group-class bridge, and documented native Divi 5 assemblies for Services, Process, Founder, Logos, Free Template, Testimonials and Closing CTA in `HOMEPAGE_ASSEMBLY.md`.
+- Added a self-contained homepage-only preloader component with the approved animated WebP, session gate, reduced-motion bypass, image-error guard and hard timeout. It is injected only on `is_front_page()` and does not touch `index.html`.
+- Verification: JavaScript syntax checks and `git diff --check` pass. PHP linting and live Divi Visual Builder verification remain pending because this repository has no PHP runtime or WordPress staging installation.
+
+### Divi homepage plugin package
+
+- Added the WordPress plugin package at `divi-migration/digit-finance-divi/` without installing or activating it in WordPress.
+- Added three editable Divi modules: `Digit Hero`, `Statement & Metrics`, and `Service List`. Their content fields cover copy, links, imagery, metric values, counter targets, prefixes and suffixes.
+- Added scoped frontend CSS and guarded motion JavaScript for hero image reveal, statement word/counter animation, service interactions, and reduced-motion handling.
+- Added a guarded Divi 5 module-library bridge plus a README documenting the later staging installation and native-module assembly work.
+- Verification: JavaScript `node --check` passes for both plugin scripts; PHP linting was unavailable because this environment has no PHP binary. WordPress/Divi Visual Builder registration remains pending staging verification.
+
+### Divi plugin audit fixes
+
+- Hardened Divi 5 Visual Builder loading to use `PackageBuildManager` on the official Visual Builder asset hook, with the correct Divi vendor hooks dependency and guarded Divi 5 detection.
+- Added defaults and escaping guards to all PHP module render fields, editable section anchor IDs, valid WordPress service routes, and duplicate-registration protection.
+- Added complete Visual Builder content settings for text, image, and service-link fields; removed the invalid placeholder icon declaration.
+- Made the motion script idempotent and safe when `IntersectionObserver` is unavailable, and added mobile layout rules for the custom modules.
+- Escaped words before the motion script writes generated spans with `innerHTML`, preventing editor-entered angle brackets from becoming executable markup.
+- Verification: both JavaScript files pass `node --check`; `git diff --check` passes. PHP linting and live Divi 5 rendering remain unavailable without PHP and a staging WordPress installation.
+
 ## 2026-09-04
+
+### Homepage animated-logo preloader
+
+- Converted the client's animated logo from MP4 to animated WebP and added it as a homepage-only preloader. `assets/digit-preloader.webp` is 832×464 — the source's native resolution — 74 frames at 42ms (3.11s), loop count 1 so it holds its final navy lockup. **191 KB, down from the 1,132 KB source — an 83% reduction.**
+- Trimmed on evidence rather than by eye. Frame-difference analysis showed motion stops at 4.25s and frames 4.3s–6.0s are identical to within noise — 1.7 seconds of dead static hold — plus a blank 0.15s at the head. Cut both, then sped the remainder 1.35× to land at 3.07s, per client direction on duration. Dropped to 24fps and encoded at lossy q90, kept at native width. An earlier 560px q78 encode at 98 KB was replaced: it was sized for a small centred panel, and once the preloader went full-bleed it was being stretched 2.6× on a 1440px viewport on top of the downscale from 832px, which visibly pixelated the lettering. Lossless was 773 KB and rejected.
+- Runs full-bleed, edge to edge, per client direction. Getting there took several attempts, recorded because the dead ends are not obvious:
+  - A single `object-fit: cover` layer is right on desktop but unusable in portrait. At 390×844 it crops the lockup to roughly a quarter of its width and the logo becomes unreadable.
+  - Matching a flat overlay colour to the clip does not work at any size. The clip runs from a cool `#f2f2f4` to `#06013b` and its background is a soft vignette rather than a flat field, so even with the corners sampled to match exactly the lighter centre still reads as a rectangle. Edge-masking only feathered the border and left the interior showing. Syncing the overlay colour on a timer looked right but coupled the CSS to the image's own playback clock, which drifts.
+  - Using a second copy of the image as the backdrop fails twice over. Blurred, it averages the dark lockup into the field and turns purple-grey. Magnified 9× from a corner instead — pure background, so the colour is right — it leaves a pale, soft fringe along the top and left edges, because `filter: blur()` samples past the element's bounds and there is nothing there to sample.
+  - Shipped solution: the field is a plain background colour on the overlay, animated `#f2f2f4` -> `#06013b` by the `pl-field` keyframes over the clip's own 3.108s and started on the same event, so no second image and no artefacts. Measured: light through 2.3s, transitioning at 2.5s, fully navy by 2.8s against the clip's ~2.58s flip — the field lags very slightly, so the navy reads as expanding outward from the lockup. The clip is centred at up to its native 832px width, never stretched, with a vertical mask feathering its edges into the field.
+- Behaviour: homepage only, first visit per session, per client direction. The gate runs in `<head>` before first paint so the overlay is never a flash over an already-rendered page. It is skipped entirely with JavaScript disabled, on `prefers-reduced-motion`, and after the first visit. A 5s hard timeout and an image `error` handler dismiss it regardless, so a slow or broken asset can never strand a visitor. On dismissal the hero word cascade is replayed so it runs as the overlay lifts rather than underneath it.
+- All preloader markup, CSS and JS sit outside the shared shell region, so the other four pages are untouched and shell parity is unaffected.
+- The 1.1MB source MP4 is not in the repo; it remains at `~/Downloads/digit-preload.mp4`. Worth archiving somewhere durable if the animation may need re-cutting.
+- Verification: rendered at 1440×760 and, via a 390px iframe, at 390×844 — full-bleed with the lockup uncropped at both, dismissing cleanly to the homepage with no residual overlay. Sampled all four viewport edges at `#f2f2f4` exactly — uniform, no fringe. Compared 560px-stretched, 832px-stretched and 832px-native side by side before choosing; only the last is free of softening. Shell parity re-checked across all four derived pages; `node --check` passes. Note: a direct `--window-size=390` screenshot mis-frames the overlay, which is the documented 500px clamp artifact, not a layout fault — use the iframe.
+- Files changed: `index.html`, `assets/digit-preloader.webp` (new), `AGENTS.md`.
 
 ### Working site header
 

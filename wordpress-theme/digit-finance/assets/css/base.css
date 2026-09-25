@@ -1,0 +1,89 @@
+:root {
+  --df-navy: #07004d;
+  --df-blue: #0000fe;
+  --df-orange: #ff6819;
+  --df-paper: #f7f6f1;
+  --df-white: #fafafa;
+  --df-muted: #69697a;
+  --df-line: rgba(7, 0, 77, 0.22);
+  --df-pad: clamp(20px, 3.2vw, 54px);
+  --df-display: "Stack Sans Headline", "Arial Black", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--df-paper);
+  color: var(--df-navy);
+  font-family: "DM Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body > .wp-site-blocks {
+  padding: 0;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.df-shell {
+  width: min(calc(100% - (var(--df-pad) * 2)), 1540px);
+  margin-inline: auto;
+}
+
+.df-section,
+.df-section > *,
+.df-shell > * {
+  margin-block: 0;
+}
+
+.df-section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 48px;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.df-section-label::before {
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+  content: "";
+}
+
+@media (max-width: 640px) {
+  :root {
+    --df-pad: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

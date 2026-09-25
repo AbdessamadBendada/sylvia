@@ -1,1 +1,12 @@
 .DS_Store
+
+# Machine-local Claude Code settings (contains absolute paths)
+.claude/settings.local.json
+
+# Machine-local Codex and browser-test state
+.codex/
+.playwright-mcp/
+
+# Local visual verification captures
+/homepage-reference.png
+/vb-*.png

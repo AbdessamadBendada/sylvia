@@ -833,6 +833,12 @@
         display: inline-block;
       }
 
+      /* Page nav sits under the logo in the wide first column: a fifth grid
+         column squeezed the phone number and legal links into wrapping. */
+      .footer-nav {
+        margin-top: 30px;
+      }
+
       .footer-brand img {
         width: min(100%, 210px);
         filter: brightness(0) invert(1);
@@ -852,6 +858,11 @@
       }
 
       .footer a:hover {
+        color: var(--orange);
+      }
+
+      /* Marks the page you are on in the footer nav, matching the header. */
+      .footer-links a[aria-current="page"] {
         color: var(--orange);
       }
 
@@ -1892,17 +1903,19 @@
         .nav-collapse .nav-links { font-size: 1.3rem; }
       }
       /* Free template page rules: scoped to this page. */
-      .freebie-static .freebie-hero { padding: clamp(70px, 9vw, 140px) 0; background: var(--orange); color: var(--navy); scroll-margin-top: 28px; }
+      .freebie-static .freebie-hero { padding: clamp(70px, 9vw, 140px) 0; background: var(--navy); color: var(--white); scroll-margin-top: 28px; }
+      .freebie-static .freebie-hero h1 { color: var(--orange); }
       .freebie-static .freebie-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(300px, 0.7fr); gap: clamp(50px, 10vw, 170px); align-items: center; }
       .freebie-static .freebie-hero h1 { max-width: 12ch; margin: 28px 0 44px; font-family: "Stack Sans Headline", sans-serif; font-size: clamp(3rem, 6.2vw, 6.8rem); font-weight: 500; letter-spacing: -0.06em; line-height: 0.86; text-transform: uppercase; }
       .freebie-static .freebie-form { max-width: 520px; }
       .freebie-static .freebie-form label { display: block; margin: 22px 0 8px; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; }
-      .freebie-static .freebie-form input { width: 100%; height: 52px; padding: 0; border: 0; border-bottom: 1px solid rgba(7,0,77,.52); border-radius: 0; outline: 0; background: transparent; color: var(--navy); font: 1rem "DM Sans", sans-serif; }
-      .freebie-static .freebie-form input::placeholder { color: rgba(7,0,77,.52); }
-      .freebie-static .freebie-form button, .freebie-static .resource-cta { width: 100%; min-height: 54px; margin-top: 30px; border: 0; border-radius: 999px; background: var(--navy); color: var(--white); cursor: pointer; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; transition: .25s ease; }
+      .freebie-static .freebie-form input { width: 100%; height: 52px; padding: 0; border: 0; border-bottom: 1px solid rgba(250,250,250,.55); border-radius: 0; outline: 0; background: transparent; color: var(--white); font: 1rem "DM Sans", sans-serif; }
+      .freebie-static .freebie-form input::placeholder { color: rgba(250,250,250,.65); }
+      .freebie-static .freebie-form input:focus-visible { border-bottom-color: var(--orange); }
+      .freebie-static .freebie-form button, .freebie-static .resource-cta { width: 100%; min-height: 54px; margin-top: 30px; border: 0; border-radius: 999px; background: var(--orange); color: var(--navy); cursor: pointer; font-size: .7rem; letter-spacing: .08em; text-transform: .25s ease, background .25s ease, color .25s ease; }
       .freebie-static .freebie-form button:hover, .freebie-static .resource-cta:hover { background: var(--white); color: var(--navy); }
       .freebie-static .form-status { min-height: 1.4em; margin: 14px 0 0; font-size: .78rem; }
-      .freebie-static .template-cover { position: relative; width: min(100%, 410px); aspect-ratio: .73; margin-inline: auto; padding: clamp(22px, 4vw, 42px); border: 1px solid var(--navy); background: var(--paper); overflow: visible; }
+      .freebie-static .template-cover { position: relative; width: min(100%, 410px); aspect-ratio: .73; margin-inline: auto; padding: clamp(22px, 4vw, 42px); border: 1px solid var(--navy); background: var(--paper); color: var(--navy); overflow: visible; }
       .freebie-static .template-cover::before { content: ""; position: absolute; z-index: -1; inset: 8px -8px -8px 8px; border: 1px solid var(--navy); background: var(--paper); }
       .freebie-static .template-file { font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; }
       .freebie-static .template-cover h2 { max-width: 8ch; margin: 30px 0 34px; font-family: "Stack Sans Headline", sans-serif; font-size: clamp(2rem, 3.5vw, 3.8rem); font-weight: 500; letter-spacing: -.05em; line-height: .9; text-transform: uppercase; }
@@ -1993,7 +2006,7 @@
       <section class="freebie-story"><div class="shell story-grid"><div class="story-copy" data-reveal><p>Founders are visionaries, so they start with a vision. Very few start with a financial foundation that can support it.</p><p>This free Excel template gives you the structure to map your revenue, costs, cash flow, and growth assumptions. It won’t replace a bespoke model, but it will show you exactly what investors expect to see, and where your thinking needs to go deeper.</p><p class="offer-for">Accompanied by a video walkthrough that explains not just how to use it, but why each element matters when you’re raising capital.</p></div><div class="what-you-get" data-reveal><h2>What you get</h2><ul><li>Plug-and-play Excel financial model template</li><li>Video walkthrough covering key assumptions and outputs</li><li>Clarity on what investors actually look for in your numbers</li></ul><a class="second-cta" href="#get">Download the free template <span aria-hidden="true">↗</span></a></div></div></section>
     </main>
     <div class="freebie-close">
-    <footer class="footer"><div class="shell"><div class="footer-grid"><div><a class="footer-brand" href="index.html" aria-label="Digit Finance home"><img src="assets/logo.png" alt="Digit Finance" decoding="async" /></a></div><div><h3>Contact</h3><div class="footer-links"><a href="mailto:hello@digitfinance.com">hello@digitfinance.com</a><a href="tel:+440000000000">+44 (0) 000 000 0000</a><p>London, UK</p></div></div><div><h3>Legal</h3><div class="footer-links"><a href="#">Imprint</a><a href="#">Terms &amp; Conditions</a><a href="#">Privacy Policy</a><a href="#">Cookies</a></div></div><div><h3>Occasional notes on startup finance</h3><form class="footer-newsletter" action="#" method="post"><input type="email" name="email" autocomplete="email" placeholder="Your email" aria-label="Newsletter email" required /><button type="submit" aria-label="Subscribe">↗</button></form></div></div><div class="footer-bottom"><span>© <span id="year"></span> Digit Finance</span><span>Strategic finance for ambitious founders</span></div></div></footer>
+    <footer class="footer"><div class="shell"><div class="footer-grid"><div><a class="footer-brand" href="index.html" aria-label="Digit Finance home"><img src="assets/logo.png" alt="Digit Finance" decoding="async" /></a><nav class="footer-links footer-nav" aria-label="Footer navigation"><a href="index.html#approach">Approach</a><a href="work-with-us.html">Services</a><a href="about-2.html">About</a><a href="free-template.html" aria-current="page">Free</a><a href="contact.html">Contact</a></nav></div><div><h3>Contact</h3><div class="footer-links"><a href="mailto:hello@digitfinance.com">hello@digitfinance.com</a><a href="tel:+440000000000">+44 (0) 000 000 0000</a><p>London, UK</p></div></div><div><h3>Legal</h3><div class="footer-links"><a href="#">Imprint</a><a href="#">Terms &amp; Conditions</a><a href="#">Privacy Policy</a><a href="#">Cookies</a></div></div><div><h3>Occasional notes on startup finance</h3><form class="footer-newsletter" action="#" method="post"><input type="email" name="email" autocomplete="email" placeholder="Your email" aria-label="Newsletter email" required /><button type="submit" aria-label="Subscribe">↗</button></form></div></div><div class="footer-bottom"><span>© <span id="year"></span> Digit Finance</span><span>Strategic finance for ambitious founders</span></div></div></footer>
     </div>
     <script>
       const FORM_ENDPOINT = "";
@@ -2013,4 +2026,3 @@
     </script>
   </body>
 </html>
-

@@ -833,6 +833,12 @@
         display: inline-block;
       }
 
+      /* Page nav sits under the logo in the wide first column: a fifth grid
+         column squeezed the phone number and legal links into wrapping. */
+      .footer-nav {
+        margin-top: 30px;
+      }
+
       .footer-brand img {
         width: min(100%, 210px);
         filter: brightness(0) invert(1);
@@ -852,6 +858,11 @@
       }
 
       .footer a:hover {
+        color: var(--orange);
+      }
+
+      /* Marks the page you are on in the footer nav, matching the header. */
+      .footer-links a[aria-current="page"] {
         color: var(--orange);
       }
 
@@ -1907,9 +1918,130 @@
         transition: 0.25s ease;
       }
       .resource-cta:hover { background: var(--white); color: var(--navy); }
+
+      /* Homepage preloader. assets/digit-preloader.webp is 560x312, 73 frames at
+         42ms (3.07s), loop count 1, so it holds its final navy frame.
+
+         The clip is presented as a bordered panel on --paper rather than blended
+         into a full-bleed field. Blending was tried and abandoned: the clip runs
+         from a cool #f2f2f4 to #06013b, and its background is a soft vignette
+         rather than a flat colour, so no single overlay colour matches it and a
+         lighter rectangle always showed through. Matching the overlay colour to
+         the clip on a timer also coupled the CSS to the image's own playback
+         clock, which is fragile. A hairline panel needs neither, and it matches
+         the panel language already used across the site. */
+      #preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: none;
+        overflow: hidden;
+        background: #f2f2f4;
+        transition: opacity 0.5s ease;
+      }
+      html.preloading #preloader { display: block; }
+      html.preloading body { overflow: hidden; }
+      #preloader img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+      /* Two copies of the same asset, so it is fetched and decoded once.
+         The backdrop covers the viewport and is blurred to a pure colour field,
+         which means it tracks the clip's own light-to-navy shift frame for frame
+         with no timer. The foreground is contained so the lockup is never
+         cropped — at 390x844 a cover-fit crops it to about a quarter of its
+         width and it becomes unreadable. */
+      /* The full-bleed field is a plain background colour driven by a CSS
+         animation of the same duration as the clip, started on the same event.
+         Earlier versions used a second copy of the image as a backdrop — either
+         blurred (which averages the dark lockup in and goes purple-grey) or
+         magnified from a corner. Both were dropped: filter: blur() samples past
+         the element's edges, so with the origin at 0 0 the top and left bled to
+         transparent and showed a pale, soft fringe. */
+      @keyframes pl-field {
+        0%, 78% { background-color: #f2f2f4; }
+        86%, 100% { background-color: #06013b; }
+      }
+      #preloader.is-playing { animation: pl-field 3.108s linear forwards; }
+      /* The clip is only 832px wide, so stretching it to fill a 1440px viewport
+         (2.9x on a retina display) visibly softens the lettering. It is shown at
+         up to its native width instead and the backdrop carries the full bleed.
+         The edges are feathered so they melt into the backdrop rather than
+         showing a band; both layers are the same frame, so the fade always lands
+         on matching colour. */
+      #preloader .pl-fg {
+        inset: auto;
+        top: 50%;
+        left: 50%;
+        width: min(92vw, 832px);
+        height: auto;
+        transform: translate(-50%, -50%);
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 12%, #000 88%, transparent 100%);
+        mask-image: linear-gradient(to bottom, transparent 0, #000 12%, #000 88%, transparent 100%);
+      }
+      #preloader.is-done { opacity: 0; pointer-events: none; }
     </style>
+    <link rel="preload" as="image" href="assets/digit-preloader.webp" />
+    <script>
+      // Preloader gate. Runs before first paint, so the overlay is never a flash
+      // on top of an already-rendered page. Skipped entirely with JS disabled,
+      // on reduced motion, and after the first visit in a session.
+      (function () {
+        try {
+          if (sessionStorage.getItem("df-preloaded")) return;
+          if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+          document.documentElement.classList.add("preloading");
+          sessionStorage.setItem("df-preloaded", "1");
+        } catch (error) {}
+      })();
+    </script>
   </head>
   <body>
+    <div id="preloader" aria-hidden="true">
+      <img class="pl-fg" src="assets/digit-preloader.webp" alt="" width="832" height="464" decoding="async" />
+    </div>
+    <script>
+      (function () {
+        var root = document.documentElement;
+        if (!root.classList.contains("preloading")) return;
+        var overlay = document.getElementById("preloader");
+        var image = overlay.querySelector(".pl-fg");
+        var END = 3180; // 74 frames x 42ms = 3.11s, then a beat on the lockup
+        var timers = [];
+        var finished = false;
+
+        function finish() {
+          if (finished) return;
+          finished = true;
+          timers.forEach(clearTimeout);
+          // Replay the hero cascade so it runs as the overlay lifts, rather than
+          // underneath it — body.ready is added on rAF further down this page.
+          document.body.classList.remove("ready");
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              document.body.classList.add("ready");
+            });
+          });
+          overlay.classList.add("is-done");
+          setTimeout(function () {
+            root.classList.remove("preloading");
+            overlay.remove();
+          }, 520);
+        }
+
+        // Never strand the visitor: dismiss regardless if the image is slow or broken.
+        timers.push(setTimeout(finish, 5000));
+        image.addEventListener("error", finish);
+        function start() {
+          overlay.classList.add("is-playing");
+          timers.push(setTimeout(finish, END));
+        }
+        if (image.complete) start();
+        else image.addEventListener("load", start);
+      })();
+    </script>
     <header class="nav">
       <div class="shell nav-inner">
         <a class="brand" href="#top" aria-label="Digit Finance home"><img src="assets/logo.png" alt="Digit Finance" decoding="async" /></a>
@@ -2215,6 +2347,13 @@
                 <a class="footer-brand" href="#top" aria-label="Digit Finance home">
                   <img src="assets/logo.png" alt="Digit Finance" />
                 </a>
+                <nav class="footer-links footer-nav" aria-label="Footer navigation">
+                  <a href="#approach">Approach</a>
+                  <a href="work-with-us.html">Services</a>
+                  <a href="about-2.html">About</a>
+                  <a href="free-template.html">Free</a>
+                  <a href="contact.html">Contact</a>
+                </nav>
               </div>
               <div>
                 <h3>Contact</h3>
