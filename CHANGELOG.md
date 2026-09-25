@@ -2,6 +2,13 @@
 
 ## 2026-09-25
 
+### Retired migration and screenshot cleanup
+
+- Removed the retired `divi-migration/`, `gutenberg-theme/`, `wordpress-theme/`, and `wp-theme/` directories at the client's direction.
+- Removed the tracked full-page design screenshot `assets/Digit Finance — Editorial Concept.png` and cleared local root/browser verification screenshots. The local captures were ignored artifacts and were never part of the repository history.
+- Updated `AGENTS.md` so the durable project context identifies the retained root static site as the current repository source.
+- Verification: confirmed the five live static pages and their referenced assets remain present, shared-shell parity still passes, local asset references resolve, and `git diff --check` is clean.
+
 ### Repository checkpoint and source hygiene
 
 - Prepared the completed static-page refinements, homepage preloader, Divi migration package, Gutenberg prototypes, and canonical native WordPress theme for version control.
